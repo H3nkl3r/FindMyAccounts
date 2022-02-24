@@ -17,6 +17,8 @@ I hope it helps you find all your accounts.
 
 `$ python scraper.py`
 
+If you have 2FA activated for your email account, you need to use an app password.
+
 ## Limitations 
 * Assumption that every account you have is linked to your email address
 * Every Account provider sent a verification email to your email
