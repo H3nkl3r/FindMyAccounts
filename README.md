@@ -1,5 +1,7 @@
 # WhereDoIHaveAnAccount
 
+![GitHub](https://img.shields.io/github/license/h3nkl3r/WhereDoIHaveAnAccount)
+
 Did you ever wonder where you have all registered your email address? In the best case you have a Password manager where
 you keep all this info but in case you haven't here is your tool.
 
@@ -11,11 +13,13 @@ I hope it helps you find all your accounts.
 ## Usage
 `$ git clone https://github.com/H3nkl3r/WhereDoIHaveAnAccount.git`
 
-`$ pip install tqdm` or `$ conda install tqdm`
-
 `$ cd WhereDoIHaveAnAccount`
 
+`$ pip install tqdm imap-tools`
+
 `$ python scraper.py`
+
+Enter your email address
 
 If you have 2FA activated for your email account, you need to use an app password.
 
