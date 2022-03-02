@@ -23,6 +23,7 @@ import re
 import sys
 
 from tqdm import tqdm
+from imap_tools.imap_utf7 import decode, encode
 
 ADDRESS_PATTERN = re.compile("<(.+)>")  # Finds email as <nospam@nospam.com>
 
@@ -52,7 +53,11 @@ def get_folders(conn):
     """
     folders = []
     for folder in conn.list()[1]:
-        folders.append(folder.decode().split(' "/" ')[1])
+        folder = decode(folder)
+        if "Noselect" in folder:
+            continue
+
+        folders.append(folder.split(' "/" ')[1])
     return folders
 
 
@@ -63,7 +68,7 @@ def get_mails_from_folder(conn, folder_name):
     :param folder_name: Email folder to be analysed
     :return: list of email uid
     """
-    typ, uid_data = conn.select(mailbox=folder_name, readonly=True)
+    typ, uid_data = conn.select(mailbox=encode(folder_name), readonly=True)
 
     typ, uid_data = conn.search(None, 'ALL')
     if typ != 'OK':
