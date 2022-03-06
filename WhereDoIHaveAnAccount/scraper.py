@@ -1,17 +1,14 @@
 '''
     WhereDoIHaveAnAccount
     Copyright (C) 2022  Timo Kühne
-
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published
     by the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Affero General Public License for more details.
-
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 '''
@@ -21,6 +18,7 @@ import imaplib
 import json
 import re
 import sys
+from importlib_resources import files
 
 from tqdm import tqdm
 from imap_tools.imap_utf7 import decode, encode
@@ -119,7 +117,7 @@ def get_imap_server(user):
     :return: imap server address if specified in json
     """
     domain = user[user.index('@') + 1:]
-    with open('imap-server.json') as json_file:
+    with open(files('WhereDoIHaveAnAccount').joinpath('imap-server.json')) as json_file:
         server = json.load(json_file)
     if domain in server:
         return server[domain]
@@ -127,20 +125,14 @@ def get_imap_server(user):
         return None
 
 
-if __name__ == "__main__":
-    print('\n#######################\n')
+def scrape(username, password, imap_server):
+    """
+    :param username: email address
+    :param password: password for the specified email address
+    :param imap_server: imap server for specified email address
+    :return: Set of domains
 
-    username = input("Enter username: ")
-    password = getpass.getpass("Enter password: ")
-
-    imap_server = get_imap_server(username)
-
-    if imap_server is None:
-        imap_server = input("Enter IMAP Server: ")
-
-    print('\nStart analysing your emails...\n')
-
-    # Connect
+    """
     mail_conn = connect(username, password, imap_server)
 
     # Open folders and get list of email message uid
@@ -157,8 +149,27 @@ if __name__ == "__main__":
 
     mail_conn.logout()
 
+    all_domains = [x[x.index('@') + 1:].rsplit('.')[-2] for x in set(all_sender)]
+    return set(all_domains)
+
+
+def main():
+    print('\n#######################\n')
+
+    username = input("Enter username: ")
+    password = getpass.getpass("Enter password: ")
+
+    imap_server = get_imap_server(username)
+
+    if imap_server is None:
+        imap_server = input("Enter IMAP Server: ")
+
+    print('\nStart analysing your emails...\n')
+
+    domains = scrape(username, password, imap_server)
+
     print("\n\n List of all UNIQUE accounts:")
     print("-------------------------------")
-    all_domains = [x[x.index('@') + 1:].rsplit('.')[-2] for x in set(all_sender)]
-    for domain in set(all_domains):
+    for domain in set(domains):
         print(domain)
+

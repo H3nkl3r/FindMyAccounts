@@ -11,15 +11,17 @@ But I had problems finding them all, so I did this bit over engineered script.
 I hope it helps you find all your accounts.
 
 ## Usage
-`$ git clone https://github.com/H3nkl3r/WhereDoIHaveAnAccount.git`
+`$ pip install git+https://github.com/H3nkl3r/WhereDoIHaveAnAccount`
 
-`$ cd WhereDoIHaveAnAccount`
+To get started right away:
 
-`$ pip install tqdm imap-tools`
+`$ WhereDoIHaveAnAccount`
 
-`$ python scraper.py`
+You can run WhereDoIHaveAnAccount as a package if running it as a script doesn't work:
 
-Enter your email address
+`$ python -m WhereDoIHaveAnAccount`
+
+After that Enter your email address
 
 If you have 2FA activated for your email account, you need to use an app password.
 
