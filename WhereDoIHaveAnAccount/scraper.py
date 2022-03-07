@@ -54,8 +54,7 @@ def get_folders(conn):
         folder = decode(folder)
         if "Noselect" in folder:
             continue
-
-        folders.append(folder.split(' "/" ')[1])
+        folders.append(re.split(' "/" | "." ', folder)[1])
     return folders
 
 
