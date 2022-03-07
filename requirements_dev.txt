@@ -1,1 +1,5 @@
 pytest
+tox
+tqdm
+imap-tools
+importlib_resources
