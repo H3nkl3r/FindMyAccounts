@@ -1,6 +1,7 @@
 # WhereDoIHaveAnAccount
 
 ![GitHub](https://img.shields.io/github/license/h3nkl3r/WhereDoIHaveAnAccount)
+![GitHub](https://github.com/h3nkl3r/wheredoihaveanaccount/actions/workflows/tests.yml/badge.svg)
 
 Did you ever wonder where you have all registered your email address? In the best case you have a Password manager where
 you keep all this info but in case you haven't here is your tool.
