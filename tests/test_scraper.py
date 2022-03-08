@@ -6,9 +6,9 @@ from tqdm import tqdm
 
 from WhereDoIHaveAnAccount.scraper import scrape
 
-TEST_EMAIl_USERNAME = os.environ.get('TEST_EMAIL_USERNAME')
-TEST_EMAIL_PASSWORD = os.environ.get('TEST_EMAIL_PASSWORD')
-TEST_EMAIL_IMAP_SERVER = os.environ.get('TEST_EMAIL_IMAP_SERVER')
+TEST_EMAIl_USERNAME = os.environ['TEST_EMAIL_USERNAME']
+TEST_EMAIL_PASSWORD = os.environ['TEST_EMAIL_PASSWORD']
+TEST_EMAIL_IMAP_SERVER = os.environ['TEST_EMAIL_IMAP_SERVER']
 
 
 def test_scrape():
