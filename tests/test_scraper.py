@@ -1,5 +1,5 @@
 import os
-from collections import Set
+from collections.abc import Set
 from functools import partialmethod
 
 from tqdm import tqdm

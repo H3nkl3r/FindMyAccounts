@@ -1,5 +1,5 @@
-pytest
-tox
-tqdm
-imap-tools
-importlib_resources
+pytest>=6.0
+tox>=3.2
+tqdm>=4.6
+imap-tools>=0.5
+importlib_resources>=5.4
