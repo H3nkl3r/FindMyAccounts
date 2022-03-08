@@ -12,7 +12,7 @@ But I had problems finding them all, so I did this bit over engineered script.
 I hope it helps you find all your accounts.
 
 ## Usage
-`$ pip install git+https://github.com/H3nkl3r/WhereDoIHaveAnAccount`
+`$ pip install WhereDoIHaveAnAccount`
 
 To get started right away:
 
