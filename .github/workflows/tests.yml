@@ -16,6 +16,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
+      env:
+        TEST_EMAIl_USERNAME: ${{ secrets.TEST_EMAIL_USERNAME }}
+        TEST_EMAIL_PASSWORD: ${{ secrets.TEST_EMAIL_PASSWORD }}
+        TEST_EMAIL_IMAP_SERVER: ${{ secrets.TEST_EMAIL_IMAP_SERVER }}
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
@@ -23,8 +27,4 @@ jobs:
         python -m pip install --upgrade pip
         pip install tox tox-gh-actions
     - name: Test with tox
-      env:
-        TEST_EMAIl_USERNAME: ${{ secrets.TEST_EMAIL_USERNAME }}
-        TEST_EMAIL_PASSWORD: ${{ secrets.TEST_EMAIL_PASSWORD }}
-        TEST_EMAIL_IMAP_SERVER: ${{ secrets.TEST_EMAIL_IMAP_SERVER }}
       run: tox
