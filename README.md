@@ -2,6 +2,10 @@
 
 ![GitHub](https://img.shields.io/github/license/h3nkl3r/WhereDoIHaveAnAccount)
 ![GitHub](https://github.com/h3nkl3r/wheredoihaveanaccount/actions/workflows/tests.yml/badge.svg)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/H3nkl3r/WhereDoIHaveAnAccount)
+![GitHub last commit](https://img.shields.io/github/last-commit/h3nkl3r/WhereDoIHaveAnAccount)
+![GitHub issues](https://img.shields.io/github/issues/h3nkl3r/wheredoIhaveanaccount)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/WhereDoIHaveAnAccount)
 
 Did you ever wonder where you have all registered your email address? In the best case you have a Password manager where
 you keep all this info but in case you haven't here is your tool.
