@@ -2,6 +2,7 @@ import sys
 import tkinter as tk
 import tkinter.messagebox
 import tkinter.scrolledtext
+from tkinter.ttk import Progressbar
 import webbrowser
 from pathlib import Path
 
@@ -32,23 +33,6 @@ def gui_scrape(username, password, imap_server):
     """
     mail_conn = WhereDoIHaveAnAccount.scraper.connect(username, password, imap_server)
 
-    # Open folders and get list of email message uid
-    all_sender = []
-    for folder in tqdm(WhereDoIHaveAnAccount.scraper.get_folders(mail_conn), desc="Total progress", position=0,
-                       leave=False, tk_parent=window):
-        # switch to folder
-        for mail_id in tqdm(WhereDoIHaveAnAccount.scraper.get_mails_from_folder(mail_conn, folder),
-                            desc=f"Analysing {str(folder)}", position=1,
-                            leave=False, tk_parent=window):
-            data = WhereDoIHaveAnAccount.scraper.fetch_message(mail_conn, mail_id)
-            sender_list = WhereDoIHaveAnAccount.scraper.get_sender(data)
-            all_sender.extend(sender_list)
-
-        mail_conn.close()
-
-    mail_conn.logout()
-
-    all_domains = [x[x.index('@') + 1:].rsplit('.')[-2] for x in set(all_sender)]
     email_entry.destroy()
     password_entry.destroy()
     imap_server_entry.destroy()
@@ -61,6 +45,34 @@ def gui_scrape(username, password, imap_server):
     canvas.delete(email_entry_img)
     canvas.delete(password_entry_img)
     canvas.delete(imap_serve_entry_img)
+
+    progress_label = canvas.create_text(
+        720, 88.0, text=f"Folder 0/{len(WhereDoIHaveAnAccount.scraper.get_folders(mail_conn)) + 1}",
+        fill="#515486", font=("Arial-BoldMT", int(22.0)))
+
+    # Open folders and get list of email message uid
+    all_sender = []
+    for i, folder in enumerate(WhereDoIHaveAnAccount.scraper.get_folders(mail_conn)):
+        canvas.itemconfig(progress_label, text=f"Folder {i+1}/{len(WhereDoIHaveAnAccount.scraper.get_folders(mail_conn)) + 1}")
+        progress_bar = Progressbar(window, orient='horizontal', mode='determinate',
+                                   length=len(WhereDoIHaveAnAccount.scraper.get_mails_from_folder(mail_conn, folder)))
+        progress_bar.place(x=550.0, y=156.0, width=350)
+        # switch to folder
+        for mail_id in WhereDoIHaveAnAccount.scraper.get_mails_from_folder(mail_conn, folder):
+            data = WhereDoIHaveAnAccount.scraper.fetch_message(mail_conn, mail_id)
+            sender_list = WhereDoIHaveAnAccount.scraper.get_sender(data)
+            all_sender.extend(sender_list)
+            progress_bar['value'] += 1
+            window.update_idletasks()
+        progress_bar.destroy()
+
+        mail_conn.close()
+
+    mail_conn.logout()
+
+    all_domains = [x[x.index('@') + 1:].rsplit('.')[-2] for x in set(all_sender)]
+
+    canvas.delete(progress_label)
 
     canvas.create_text(
         720, 88.0, text="Potential accounts.",
