@@ -2,9 +2,11 @@ import sys
 import tkinter as tk
 import tkinter.messagebox
 import tkinter.scrolledtext
+import tkinter.messagebox
 import webbrowser
 from pathlib import Path
 from tkinter.ttk import Progressbar
+import imaplib
 
 import WhereDoIHaveAnAccount.scraper
 
@@ -58,6 +60,10 @@ def gui_scrape(username, password_info, imap_server_info):
 
     """
     mail_conn = WhereDoIHaveAnAccount.scraper.connect(username, password_info, imap_server_info)
+    if mail_conn is None:
+        tk.messagebox.showerror(
+            title="Wrong Information", message="Please enter correct email, password or imap-server")
+        return
 
     email_entry.destroy()
     password_entry.destroy()
@@ -84,14 +90,19 @@ def gui_scrape(username, password_info, imap_server_info):
         progress_bar = Progressbar(window, orient='horizontal', mode='determinate',
                                    length=len(WhereDoIHaveAnAccount.scraper.get_mails_from_folder(mail_conn, folder)))
         progress_bar.place(x=550.0, y=156.0, width=350)
+        progress_bar_label = canvas.create_text(
+            550.0, 148.0, text=f"0/{len(WhereDoIHaveAnAccount.scraper.get_mails_from_folder(mail_conn, folder))}", fill="#515486",
+            font=("Arial-BoldMT", int(13.0)), anchor="w")
         # switch to folder
         for mail_id in WhereDoIHaveAnAccount.scraper.get_mails_from_folder(mail_conn, folder):
             data = WhereDoIHaveAnAccount.scraper.fetch_message(mail_conn, mail_id)
             sender_list = WhereDoIHaveAnAccount.scraper.get_sender(data)
             all_sender.extend(sender_list)
             progress_bar['value'] += 1
+            canvas.itemconfig(progress_bar_label, text=f"{int(progress_bar['value'])}/{len(WhereDoIHaveAnAccount.scraper.get_mails_from_folder(mail_conn, folder))}")
             window.update_idletasks()
         progress_bar.destroy()
+        canvas.delete(progress_bar_label)
 
         mail_conn.close()
 
@@ -142,7 +153,7 @@ def know_more_clicked():
 def scrape_gui():
     global window
     window = tk.Tk()
-    window.title("WhereDoIHaveAnAccount")
+    window.title("Where Do I Have An Account?")
 
     window.geometry("950x519")
     window.configure(bg="#000220")
@@ -155,8 +166,11 @@ def scrape_gui():
     canvas.create_rectangle(40, 160, 40 + 60, 160 + 5, fill="#FCFCFC", outline="")
 
     text_box_bg = tk.PhotoImage(file=ASSETS_PATH / "TextBox_Bg.png")
+    global email_entry_img
     email_entry_img = canvas.create_image(700.5, 167.5, image=text_box_bg)
+    global password_entry_img
     password_entry_img = canvas.create_image(700.5, 248.5, image=text_box_bg)
+    global imap_serve_entry_img
     imap_serve_entry_img = canvas.create_image(700.5, 329.5, image=text_box_bg)
 
     global email_entry

@@ -38,8 +38,7 @@ def connect(user, pwd, server):
     try:
         conn.login(user, pwd)
     except imaplib.IMAP4.error:
-        print("Failed to login")
-        sys.exit(1)
+        return None
     return conn
 
 
@@ -133,6 +132,9 @@ def scrape(username, password, imap_server):
 
     """
     mail_conn = connect(username, password, imap_server)
+    if mail_conn is None:
+        print("Connection failed: Remember to use an APP-Password when you have 2-Factor-Authentication active!")
+        sys.exit(1)
 
     # Open folders and get list of email message uid
     all_sender = []
