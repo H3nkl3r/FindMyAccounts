@@ -15,6 +15,15 @@ jobs:
             CMD_BUILD: pyinstaller -F -w -n WhereDoIHaveAnAccount --add-data "gui/assets/*.png;gui/assets" run.py
             OUT_FILE_NAME: WhereDoIHaveAnAccount.exe
             ASSET_MIME: application/vnd.microsoft.portable-executable
+          - os: macos-latest
+            TARGET: mac
+            CMD_BUILD: pyinstaller -F -w -n WhereDoIHaveAnAccount --add-data "gui/assets/*.png;gui/assets" run.py
+            OUT_FILE_NAME: WhereDoIHaveAnAccount.app
+          - os: ubuntu-latest
+            TARGET: linux
+            CMD_BUILD: pyinstaller -F -n WhereDoIHaveAnAccount --add-data "gui/assets/*.png;gui/assets" run.py
+            OUT_FILE_NAME: WhereDoIHaveAnAccount
+            ASSET_MIME: application/x-executable
     steps:
     - uses: actions/checkout@v1
     - name: Set up Python 3.9
