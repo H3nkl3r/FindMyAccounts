@@ -17,7 +17,7 @@ jobs:
             ASSET_MIME: application/vnd.microsoft.portable-executable
           - os: macos-latest
             TARGET: mac
-            CMD_BUILD: pyinstaller -F -w -n WhereDoIHaveAnAccount --add-data "gui/assets/*.png;gui/assets" run.py
+            CMD_BUILD: pyinstaller -F -w -n WhereDoIHaveAnAccount --add-data "gui/assets/*.png:gui/assets" run.py
             OUT_FILE_NAME: WhereDoIHaveAnAccount.app
           - os: ubuntu-latest
             TARGET: linux
