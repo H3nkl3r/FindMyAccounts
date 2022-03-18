@@ -3,3 +3,4 @@ tox>=3.2
 tqdm>=4.6
 imap-tools>=0.5
 importlib_resources>=5.4
+pyinstaller>=4.10
