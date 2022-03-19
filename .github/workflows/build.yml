@@ -12,7 +12,7 @@ jobs:
         include:
           - os: windows-latest
             TARGET: windows
-            CMD_BUILD: python -m eel run.py gui/web --onefile
+            CMD_BUILD: python -m eel run.py gui/web --onefile -n WhereDoIHaveAnAccount
             OUT_FILE_NAME: WhereDoIHaveAnAccount.exe
             ASSET_MIME: application/vnd.microsoft.portable-executable
 
