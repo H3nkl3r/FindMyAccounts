@@ -1,8 +1,5 @@
 import os
 from collections.abc import Set
-from functools import partialmethod
-
-from tqdm import tqdm
 
 from WhereDoIHaveAnAccount.scraper import scrape
 
@@ -12,7 +9,6 @@ TEST_EMAIL_IMAP_SERVER = os.environ['TEST_EMAIL_IMAP_SERVER']
 
 
 def test_scrape():
-    tqdm.__init__ = partialmethod(tqdm.__init__, disable=True)
     domains = scrape(TEST_EMAIl_USERNAME, TEST_EMAIL_PASSWORD, TEST_EMAIL_IMAP_SERVER)
     assert isinstance(domains, Set)
     assert len(domains) is not 0
