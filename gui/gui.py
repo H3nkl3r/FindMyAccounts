@@ -50,76 +50,6 @@ def main():
     scrape_gui()
 
 
-def gui_scrape(username, password_info, imap_server_info):
-    """
-    Scrape from WhereDoIHaveAnAccount with tqdm gui method
-    :param username: email address
-    :param password_info: password for the specified email address
-    :param imap_server_info: imap server for specified email address
-    :return: Set of domains
-
-    """
-    mail_conn = WhereDoIHaveAnAccount.scraper.connect(username, password_info, imap_server_info)
-    if mail_conn is None:
-        tk.messagebox.showerror(
-            title="Wrong Information", message="Please enter correct email, password or imap-server")
-        return
-
-    email_entry.destroy()
-    password_entry.destroy()
-    imap_server_entry.destroy()
-    analyse_btn.destroy()
-    canvas.delete(email_label)
-    canvas.delete(password_label)
-    canvas.delete(imap_server_label)
-    canvas.delete(analyse_label)
-    canvas.delete(enter_the_details_label)
-    canvas.delete(email_entry_img)
-    canvas.delete(password_entry_img)
-    canvas.delete(imap_serve_entry_img)
-
-    progress_label = canvas.create_text(
-        720, 88.0, text=f"Folder 0/{len(WhereDoIHaveAnAccount.scraper.get_folders(mail_conn)) + 1}",
-        fill="#515486", font=("Arial-BoldMT", int(22.0)))
-
-    # Open folders and get list of email message uid
-    all_sender = []
-    for i, folder in enumerate(WhereDoIHaveAnAccount.scraper.get_folders(mail_conn)):
-        canvas.itemconfig(progress_label,
-                          text=f"Folder {i + 1}/{len(WhereDoIHaveAnAccount.scraper.get_folders(mail_conn)) + 1}")
-        progress_bar = Progressbar(window, orient='horizontal', mode='determinate',
-                                   length=len(WhereDoIHaveAnAccount.scraper.get_mails_from_folder(mail_conn, folder)))
-        progress_bar.place(x=550.0, y=156.0, width=350)
-        progress_bar_label = canvas.create_text(
-            550.0, 148.0, text=f"0/{len(WhereDoIHaveAnAccount.scraper.get_mails_from_folder(mail_conn, folder))}", fill="#515486",
-            font=("Arial-BoldMT", int(13.0)), anchor="w")
-        # switch to folder
-        for mail_id in WhereDoIHaveAnAccount.scraper.get_mails_from_folder(mail_conn, folder):
-            data = WhereDoIHaveAnAccount.scraper.fetch_message(mail_conn, mail_id)
-            sender_list = WhereDoIHaveAnAccount.scraper.get_sender(data)
-            all_sender.extend(sender_list)
-            progress_bar['value'] += 1
-            canvas.itemconfig(progress_bar_label, text=f"{int(progress_bar['value'])}/{len(WhereDoIHaveAnAccount.scraper.get_mails_from_folder(mail_conn, folder))}")
-            window.update_idletasks()
-        progress_bar.destroy()
-        canvas.delete(progress_bar_label)
-
-        mail_conn.close()
-
-    mail_conn.logout()
-
-    all_domains = [x[x.index('@') + 1:].rsplit('.')[-2] for x in set(all_sender)]
-
-    canvas.delete(progress_label)
-
-    canvas.create_text(
-        720, 88.0, text="Potential accounts.",
-        fill="#515486", font=("Arial-BoldMT", int(22.0)))
-    account_list = tk.scrolledtext.ScrolledText(window, font=("Arial-BoldMT", int(13.0)), width=30, height=18)
-    account_list.place(x=550.0, y=156.0)
-    account_list.insert(tk.INSERT, '\n'.join(all_domains))
-
-
 def btn_clicked():
     global email
     global password
@@ -142,10 +72,36 @@ def btn_clicked():
             title="Invalid Path!", message="Please enter imap server.")
         return
 
-    gui_scrape(email, password, imap_server)
+    email_entry.destroy()
+    password_entry.destroy()
+    imap_server_entry.destroy()
+    analyse_btn.destroy()
+    canvas.delete(email_label)
+    canvas.delete(password_label)
+    canvas.delete(imap_server_label)
+    canvas.delete(analyse_label)
+    canvas.delete(enter_the_details_label)
+    canvas.delete(email_entry_img)
+    canvas.delete(password_entry_img)
+    canvas.delete(imap_serve_entry_img)
+
+    take_a_seat = canvas.create_text(
+        720, 88.0, text="Take a seat.",
+        fill="#515486", font=("Arial-BoldMT", int(22.0)))
+
+    domains = WhereDoIHaveAnAccount.scraper.scrape(email, password, imap_server)
+
+    canvas.delete(take_a_seat)
+
+    canvas.create_text(
+        720, 88.0, text="Potential accounts.",
+        fill="#515486", font=("Arial-BoldMT", int(22.0)))
+    account_list = tk.scrolledtext.ScrolledText(window, font=("Arial-BoldMT", int(13.0)), width=30, height=18)
+    account_list.place(x=550.0, y=156.0)
+    account_list.insert(tk.INSERT, '\n'.join(domains))
 
 
-def know_more_clicked():
+def know_more_clicked(event):
     instructions = "https://github.com/H3nkl3r/WhereDoIHaveAnAccount/"
     webbrowser.open_new_tab(instructions)
 
