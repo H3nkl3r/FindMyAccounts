@@ -25,7 +25,8 @@ jobs:
             CMD_BUILD: >
                 python -m eel run.py gui/web --onefile -n WhereDoIHaveAnAccount --noconsole &&
                 cd dist/ &&
-                zip -r9 WhereDoIHaveAnAccount WhereDoIHaveAnAccount.app/
+                zip -r9 WhereDoIHaveAnAccount WhereDoIHaveAnAccount.app/ &&
+                cd ../
             OUT_FILE_NAME: WhereDoIHaveAnAccount.zip
             ASSET_MIME: application/zip
 
