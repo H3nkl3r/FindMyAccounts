@@ -20,10 +20,8 @@
       <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
       {% if site.github.is_project_page %}
         <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
-      {% endif %}
-      {% if site.show_downloads %}
-        <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
-        <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a>
+        <a href="https://github.com/H3nkl3r/WhereDoIHaveAnAccount/releases/latest/download/WhereDoIHaveAnAccount-linux" class="btn">Download Linux</a>
+        <a href="https://github.com/H3nkl3r/WhereDoIHaveAnAccount/releases/latest/download/WhereDoIHaveAnAccount-windows.exe" class="btn">Download Windows</a>
       {% endif %}
     </header>
 
