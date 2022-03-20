@@ -1,5 +1,4 @@
 import os
-from collections.abc import Set
 
 from WhereDoIHaveAnAccount.scraper import scrape
 
@@ -10,5 +9,5 @@ TEST_EMAIL_IMAP_SERVER = os.environ['TEST_EMAIL_IMAP_SERVER']
 
 def test_scrape():
     domains = scrape(TEST_EMAIl_USERNAME, TEST_EMAIL_PASSWORD, TEST_EMAIL_IMAP_SERVER)
-    assert isinstance(domains, Set)
+    assert isinstance(domains, list)
     assert len(domains) is not 0
