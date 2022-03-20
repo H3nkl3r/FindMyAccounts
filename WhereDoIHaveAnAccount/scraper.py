@@ -14,8 +14,10 @@
 """
 import getpass
 import json
+import socket
 
 from imap_tools import MailBox, MailBoxFolderManager
+from imap_tools.errors import MailboxLoginError
 from importlib_resources import files
 
 
@@ -43,13 +45,19 @@ def scrape(username, password, imap_server):
 
     """
     von = []
-    with MailBox(imap_server).login(username, password) as mailbox:
-        for folder in MailBoxFolderManager(mailbox).list():
-            if 'sent' in folder.name.lower():
-                continue
-            mailbox.folder.set(folder.name)
-            for msg in mailbox.fetch(headers_only=True, bulk=True):
-                von.append(msg.from_)
+    try:
+        with MailBox(imap_server).login(username, password) as mailbox:
+            for folder in MailBoxFolderManager(mailbox).list():
+                if 'sent' in folder.name.lower():
+                    continue
+                mailbox.folder.set(folder.name)
+                for msg in mailbox.fetch(headers_only=True, bulk=True):
+                    von.append(msg.from_)
+    except MailboxLoginError:
+        return 'Authentication failed: If you have 2-Factor-Authentication activated for your Email, you need to use ' \
+               'an App-Password '
+    except Exception as e:
+        return f"An exception of type {type(e).__name__}: {e}"
 
     domains = []
     for email_address in von:
@@ -58,7 +66,7 @@ def scrape(username, password, imap_server):
         except IndexError:
             continue
 
-    domains = set(domains)
+    domains = list(set(domains))
     return domains
 
 
