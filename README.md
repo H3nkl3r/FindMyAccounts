@@ -6,6 +6,8 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/h3nkl3r/WhereDoIHaveAnAccount)
 ![GitHub issues](https://img.shields.io/github/issues/h3nkl3r/wheredoIhaveanaccount)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/WhereDoIHaveAnAccount)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/WhereDoIHaveAnAccount?label=Python%20Package%20Downloads)
+![GitHub all releases](https://img.shields.io/github/downloads/H3nkl3r/WhereDoIHaveAnAccount/total?label=Executable%20downloads)
 
 Did you ever wonder where you have all registered your email address? In the best case you have a Password manager where
 you keep all this info but in case you haven't here is your tool.
@@ -16,6 +18,13 @@ But I had problems finding them all, so I did this bit over engineered script.
 I hope it helps you find all your accounts.
 
 ## Usage
+
+Just downlaod and go for it
+
+* [Linux](https://github.com/H3nkl3r/WhereDoIHaveAnAccount/releases/latest/download/WhereDoIHaveAnAccount-linux)
+* [Windows](https://github.com/H3nkl3r/WhereDoIHaveAnAccount/releases/latest/download/WhereDoIHaveAnAccount-windows.exe)
+
+### For Experts
 `$ pip install WhereDoIHaveAnAccount`
 
 To get started right away:
@@ -39,3 +48,4 @@ Pull requests are very welcomed.
 ### ToDo
 * Add new servers to the imap-server list
 * More exception handling
+* Executbale for macOS
