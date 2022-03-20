@@ -8,7 +8,7 @@ Please open a ticket [here](https://github.com/H3nkl3r/WhereDoIHaveAnAccount/iss
 
 ## Usage
 
-1. Open Executable
+1. Download & Open Executable
 2. Fill in your details
 3. Click "analyse" and wait for the results
 
