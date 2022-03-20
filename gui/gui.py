@@ -7,7 +7,7 @@ import platform
 @eel.expose
 def expose_scrape(username, password, imap_server):
     domains = WhereDoIHaveAnAccount.scraper.scrape(username, password, imap_server)
-    return list(domains)
+    return domains
 
 
 def main():

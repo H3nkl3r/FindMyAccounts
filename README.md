@@ -38,3 +38,4 @@ If you have 2FA activated for your email account, you need to use an app passwor
 Pull requests are very welcomed.
 ### ToDo
 * Add new servers to the imap-server list
+* More exception handling
