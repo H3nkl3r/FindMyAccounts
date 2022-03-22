@@ -1,3 +1,5 @@
 theme: jekyll-theme-cayman
 title: WhereDoIHaveAnAccount
 description: A privacy first, open-source tool that analyses your emails to find out where you possible could have accounts.
+plugins:
+  - jekyll-seo-tag
