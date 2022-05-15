@@ -1,5 +1,6 @@
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
+let domainlist;
 
 function showTab(n) {
     // This function will display the specified tab of the form ...
@@ -23,14 +24,29 @@ async function next() {
     const username = document.getElementById('email').value
     const password = document.getElementById('password').value
     const imap_server = document.getElementById('imap_server').value
-    let domainlist = await eel.expose_scrape(username, password, imap_server)();
+    domainlist = await eel.expose_scrape(username, password, imap_server)();
+    domainlist = String(domainlist).split(",");
     // Hide the current tab:
     x[currentTab].style.display = "none";
     // Increase or decrease the current tab by 1:
     currentTab = currentTab + 1;
     // Otherwise, display the correct tab:
     showTab(currentTab);
-    document.getElementById('domainlist').innerText = String(domainlist).split(",").join("\n")
+
+    // create list of domains
+    domainlist.forEach(item => {
+    let li = document.createElement('li');
+    li.style.listStyleImage = "url('https://www.google.com/s2/favicons?domain=" + item + "')";
+    document.getElementById('domainlist').appendChild(li);
+
+    li.innerHTML += item;
+});
+}
+
+function copytoclipboard() {
+    if (navigator && navigator.clipboard && navigator.clipboard.writeText)
+        return navigator.clipboard.writeText(domainlist.join("\n"));
+    return Promise.reject('The Clipboard API is not available.');
 }
 
 

@@ -84,9 +84,24 @@ input.invalid {
 
 #domainlist {
   overflow: scroll;
-  width: 60%;
+  width: 20%;
   height: 60%;
 
+}
+
+ul {
+  list-style-position: inside;
+  margin: 0;
+  padding: 0;
+}
+
+ul li {
+  border-radius: 7px;
+  padding: 10px;
+}
+
+ul li:hover {
+  background-color: rgba(0, 2, 41, 0.3);
 }
 
 
