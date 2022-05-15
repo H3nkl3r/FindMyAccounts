@@ -10,6 +10,7 @@
     <meta name="theme-color" content="#157878">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    <script type="text/javascript" src="{{ '/assets/js/stepper.js?v=' | append: site.github.build_revision | relative_url }}"></script>
     {% include head-custom.html %}
   </head>
   <body>
@@ -54,7 +55,6 @@
             <ul id="domainlist"></ul>
             <button type="button" onclick="copytoclipboard()">Copy</button>
         </div>
-        <script type="text/javascript" src="../assets/js/stepper.js"></script>
 
       <footer class="site-footer">
         {% if site.github.is_project_page %}
