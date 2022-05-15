@@ -47,26 +47,6 @@ button:hover {
   background-color: gray;
 }
 
-hr {
-  width: 10%;
-  color: white;
-  margin-left: 3%;
-  text-align: left;
-  background-color: white;
-  height: 0.5%;
-  border: none;
-}
-
-p {
-  padding-top: 5%;
-  padding-bottom: 5%;
-  width: 60%;
-}
-
-h2 {
-  width: 80%;
-}
-
 /* Mark input boxes that gets an error on validation: */
 input.invalid {
   background-color: #ffdddd;
