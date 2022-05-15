@@ -8,6 +8,8 @@ name: Build and deploy Python app to Azure Web App - WhereDoIHaveAnAccount
 
 on:
   push:
+    paths:
+      - 'api/**'
     branches:
       - web-version
   workflow_dispatch:
