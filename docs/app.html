@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="">
+<body>
+    <div class="tab">
+            <form>
+                <h2>Enter the details.</h2>
+
+                <label for="email">Email</label><br/>
+                <input type="text" id="email" name="email" placeholder="wheredoihaveanaccount@musteremail.de" oninput="this.className = ''"><br/>
+
+                <label for="password">Password</label><br/>
+                <input type="password" id="password" name="password" placeholder="Your password..." oninput="this.className = ''"><br/>
+
+                <label for="imap_server">IMAP-Server</label><br/>
+                <input type="text" id="imap_server" name="imap_server" placeholder="Your imap-server" oninput="this.className = ''"><br/>
+
+                <button type="button" onclick="next()">Analyse</button>
+            </form>
+        </div>
+
+        <div class="tab">
+            <h2>This could take a moment</h2>
+        </div>
+
+        <div class="tab">
+            <h2>Potential Accounts</h2>
+            <ul id="domainlist"></ul>
+            <button type="button" onclick="copytoclipboard()">Copy</button>
+        </div>
+        <script type="text/javascript" src="assets/js/stepper.js"></script>
+</body>
+</html>
