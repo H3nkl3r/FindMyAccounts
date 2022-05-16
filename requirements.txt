@@ -1,5 +1,8 @@
-eel
+pytest
 setuptools
 fastapi
 wheredoihaveanaccount
 requests
+uvicorn[standard]
+tox
+imap-tools
