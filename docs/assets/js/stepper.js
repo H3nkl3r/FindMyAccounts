@@ -1,6 +1,7 @@
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
 let domainlist;
+let imap_server = null;
 
 function showTab(n) {
     // This function will display the specified tab of the form ...
@@ -13,18 +14,29 @@ function showTab(n) {
 async function next() {
     // This function will figure out which tab to display
     const x = document.getElementsByClassName("tab");
-    // Exit the function if any field in the current tab is invalid:
-    if (!validateForm()) return false;
+
+    if (!validateForm(0)) return false;
+    if (!validateForm(1)) return false;
+    const username = document.getElementById('email').value;
+
+    if(document.getElementById('imap_server').style.display === 'block'){
+        imap_server = document.getElementById('imap_server').value;
+    } else if(imap_server === null){
+        imap_server = await get_imap_server(username);
+        if (imap_server === 'Not in DB') {
+            document.getElementById('imap_server').style.display = 'block';
+            document.getElementById('imap_server_label').style.display = 'block';
+            return false;
+        }
+    }
+
     // Hide the current tab:
     x[currentTab].style.display = "none";
     // Increase or decrease the current tab by 1:
     currentTab = currentTab + 1;
     // Otherwise, display the correct tab:
     showTab(currentTab);
-    const username = document.getElementById('email').value
     const password = document.getElementById('password').value
-    const imap_server = document.getElementById('imap_server').value
-    //domainlist = await eel.expose_scrape(username, password, imap_server)();
     await fetch('https://wheredoihaveanaccount.azurewebsites.net/accounts/?email=' + username + '&password=' + password + '&imap_server=' + imap_server)
         .then(response => response.json())
         .then(data => {
@@ -54,22 +66,35 @@ function copytoclipboard() {
     return Promise.reject('The Clipboard API is not available.');
 }
 
-
-function validateForm() {
+function validateForm(n) {
     // This function deals with validation of the form fields
-    let x, y, i, valid = true;
+    let x, y, valid = true;
     x = document.getElementsByClassName("tab");
     console.log(x)
     y = x[currentTab].getElementsByTagName("input");
-    // A loop that checks every input field in the current tab:
-    for (i = 0; i < y.length; i++) {
-        // If a field is empty...
-        if (y[i].value === "") {
-            // add an "invalid" class to the field:
-            y[i].className += " invalid";
-            // and set the current valid status to false:
-            valid = false;
-        }
+    // If a field is empty...
+    if (y[n].value === "") {
+        // add an "invalid" class to the field:
+        y[n].className += " invalid";
+        // and set the current valid status to false:
+        valid = false;
     }
     return valid; // return the valid status
+}
+
+async function get_imap_server(email){
+    const name = email.substring(0, email.lastIndexOf("@"));
+    const domain = email.substring(email.lastIndexOf("@") + 1);
+    let imap;
+    await fetch('https://autoconfig.thunderbird.net/v1.1/' + domain)
+        .then(response => response.text())
+        .then(data => {
+            let parser = new DOMParser();
+            let xmlDoc = parser.parseFromString(data, "text/xml");
+            imap = xmlDoc.getElementsByTagName("incomingServer")[0].getElementsByTagName("hostname")[0].childNodes[0].nodeValue.toString();
+        })
+        .catch(error => {
+            imap = 'Not in DB';
+        });
+    return imap;
 }

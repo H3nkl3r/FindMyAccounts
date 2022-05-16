@@ -46,9 +46,9 @@ input.invalid {
 
 }
 
-/*.imap_server {
+.imap_server {
   display: none;
-}*/
+}
 
 ul {
   list-style-position: inside;
