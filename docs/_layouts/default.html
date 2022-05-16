@@ -39,8 +39,8 @@
                 <label for="password">Password</label><br/>
                 <input type="password" id="password" name="password" placeholder="Your password..." oninput="this.className = ''"><br/>
 
-                <label for="imap_server">IMAP-Server</label><br/>
-                <input type="text" id="imap_server" name="imap_server" placeholder="Your imap-server" oninput="this.className = ''"><br/>
+                <label class="imap_server" for="imap_server">IMAP-Server</label><br/>
+                <input class="imap_server" type="text" id="imap_server" name="imap_server" placeholder="Your imap-server" oninput="this.className = ''"><br/>
 
                 <button type="button" onclick="next()">Analyse</button>
             </form>
@@ -48,6 +48,7 @@
 
         <div class="tab">
             <h2>This could take a moment</h2>
+             <div class="loader"></div>
         </div>
 
         <div class="tab">
