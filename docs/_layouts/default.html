@@ -10,6 +10,7 @@
     <meta name="theme-color" content="#157878">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/stepper.css?v=' | append: site.github.build_revision | relative_url }}">
     {% include head-custom.html %}
   </head>
   <body>
@@ -19,14 +20,42 @@
       <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
       <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
       {% if site.github.is_project_page %}
+        <a href="#formular" class="btn">Online Tool</a>
         <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
-        <a href="https://github.com/H3nkl3r/WhereDoIHaveAnAccount/releases/latest/download/WhereDoIHaveAnAccount-linux" class="btn">Download Linux</a>
-        <a href="https://github.com/H3nkl3r/WhereDoIHaveAnAccount/releases/latest/download/WhereDoIHaveAnAccount-windows.exe" class="btn">Download Windows</a>
       {% endif %}
     </header>
 
     <main id="content" class="main-content" role="main">
       {{ content }}
+
+        <div id="formular" class="tab">
+            <form>
+                <h2>Enter the details.</h2>
+
+                <label for="email">Email</label><br/>
+                <input type="text" id="email" name="email" placeholder="wheredoihaveanaccount@musteremail.de" oninput="this.className = ''"><br/>
+
+                <label for="password">Password</label><br/>
+                <input type="password" id="password" name="password" placeholder="Your password..." oninput="this.className = ''"><br/>
+
+                <label class="imap_server" id="imap_server_label" for="imap_server">IMAP-Server</label><br/>
+                <input class="imap_server" type="text" id="imap_server" name="imap_server" placeholder="Your imap-server" oninput="this.className = ''"><br/>
+
+                <button type="button" onclick="next()">Analyse</button>
+            </form>
+        </div>
+
+        <div class="tab">
+            <h2>This could take a moment</h2>
+             <div class="loader"></div>
+        </div>
+
+        <div class="tab">
+            <h2>Potential Accounts</h2>
+            <ul id="domainlist"></ul>
+            <button type="button" onclick="copytoclipboard()">Copy</button>
+        </div>
+        <script type="text/javascript" src="{{ '/assets/js/stepper.js?v=' | append: site.github.build_revision | relative_url }}"></script>
 
       <footer class="site-footer">
         {% if site.github.is_project_page %}
