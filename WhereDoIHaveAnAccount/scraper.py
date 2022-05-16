@@ -13,12 +13,11 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 import getpass
-import json
-import socket
+from xml.etree.ElementTree import fromstring
 
+import requests
 from imap_tools import MailBox, MailBoxFolderManager
 from imap_tools.errors import MailboxLoginError
-from importlib_resources import files
 
 
 def get_imap_server(user):
@@ -28,12 +27,16 @@ def get_imap_server(user):
     :return: imap server address if specified in json
     """
     domain = user[user.index('@') + 1:]
-    with open(files('WhereDoIHaveAnAccount').joinpath('imap-server.json')) as json_file:
-        server = json.load(json_file)
-    if domain in server:
-        return server[domain]
-    else:
+    try:
+        r = requests.get('https://autoconfig.thunderbird.net/v1.1/' + domain)
+    except requests.exceptions.ConnectionError:
+        print('Connection Error')
         return None
+
+    root = fromstring(r.content)
+    for child in root[0]:
+        if child.tag == 'incomingServer':
+            return child[0].text
 
 
 def scrape(username, password, imap_server):

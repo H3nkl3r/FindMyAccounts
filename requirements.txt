@@ -1,7 +1,5 @@
-pytest>=6.0
-tox>=3.2
-imap-tools>=0.5
-importlib_resources>=5.4
-pyinstaller>=4.10
-eel>=0.14.0
-setuptools>=58.0.4
+eel
+setuptools
+fastapi
+wheredoihaveanaccount
+requests
