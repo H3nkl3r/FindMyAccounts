@@ -20,16 +20,16 @@
       <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
       <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
       {% if site.github.is_project_page %}
-        <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
-        <a href="https://github.com/H3nkl3r/WhereDoIHaveAnAccount/releases/latest/download/WhereDoIHaveAnAccount-linux" class="btn">Download Linux</a>
-        <a href="https://github.com/H3nkl3r/WhereDoIHaveAnAccount/releases/latest/download/WhereDoIHaveAnAccount-windows.exe" class="btn">Download Windows</a>
+        <a href="#formular" class="btn">Online Tool</a>
+        <a href="{{ site.github.repository_url | append: '/releases/latest/download/WhereDoIHaveAnAccount-linux' }}" class="btn">Download Linux</a>
+        <a href="{{ site.github.repository_url | append: '/releases/latest/download/WhereDoIHaveAnAccount-windows.exe' }}" class="btn">Download Windows</a>
       {% endif %}
     </header>
 
     <main id="content" class="main-content" role="main">
       {{ content }}
 
-        <div class="tab">
+        <div id="formular" class="tab">
             <form>
                 <h2>Enter the details.</h2>
 
