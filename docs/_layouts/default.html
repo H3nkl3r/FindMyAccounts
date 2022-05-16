@@ -21,8 +21,7 @@
       <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
       {% if site.github.is_project_page %}
         <a href="#formular" class="btn">Online Tool</a>
-        <a href="{{ site.github.repository_url | append: '/releases/latest/download/WhereDoIHaveAnAccount-linux' }}" class="btn">Download Linux</a>
-        <a href="{{ site.github.repository_url | append: '/releases/latest/download/WhereDoIHaveAnAccount-windows.exe' }}" class="btn">Download Windows</a>
+        <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
       {% endif %}
     </header>
 
