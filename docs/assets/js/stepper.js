@@ -2,6 +2,10 @@ var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
 let domainlist;
 let imap_server = null;
+const name = 'wheredoihaveanaccount';
+const protocol = 'https';
+const cloud = 'azurewebsites';
+const gTLD = 'net';
 
 function showTab(n) {
     // This function will display the specified tab of the form ...
@@ -37,7 +41,7 @@ async function next() {
     // Otherwise, display the correct tab:
     showTab(currentTab);
     const password = document.getElementById('password').value
-    await fetch('https://wheredoihaveanaccount.azurewebsites.net/accounts/?email=' + username + '&password=' + password + '&imap_server=' + imap_server)
+    await fetch(protocol + '://' + name + '.' + cloud + '.' + gTLD + '/accounts/?email=' + username + '&password=' + password + '&imap_server=' + imap_server)
         .then(response => response.json())
         .then(data => {
             domainlist = data
