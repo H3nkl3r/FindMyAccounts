@@ -1,0 +1,25 @@
+---
+layout: default
+title: Another page
+description: This is just another page
+---
+
+<div id="formular" class="tab">
+    <form>
+        <h2>Enter the details.</h2>
+
+        <label for="email">Email</label><br/>
+        <input type="text" id="email" name="email" placeholder="wheredoihaveanaccount@musteremail.de"
+               oninput="this.className = ''"><br/>
+
+        <label for="password">Password</label><br/>
+        <input type="password" id="password" name="password" placeholder="Your password..."
+               oninput="this.className = ''"><br/>
+
+        <label class="imap_server" id="imap_server_label" for="imap_server">IMAP-Server</label><br/>
+        <input class="imap_server" type="text" id="imap_server" name="imap_server" placeholder="Your imap-server"
+               oninput="this.className = ''"><br/>
+
+        <button type="button">Analyse</button>
+    </form>
+</div>
