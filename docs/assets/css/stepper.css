@@ -30,9 +30,6 @@ input.invalid {
 /* Hide all steps by default: */
 .tab {
   display: none;
-  padding-top:2rem;
-  margin-top:2rem;
-  border-top:solid 1px #eff0f1
 }
 
 /* Mark the active step: */
