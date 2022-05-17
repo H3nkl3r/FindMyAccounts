@@ -14,6 +14,7 @@
 """
 import getpass
 from xml.etree.ElementTree import fromstring
+import logging
 
 import requests
 from imap_tools import MailBox, MailBoxFolderManager
@@ -60,7 +61,8 @@ def scrape(username, password, imap_server):
         return 'Authentication failed: If you have 2-Factor-Authentication activated for your Email, you need to use ' \
                'an App-Password '
     except Exception as e:
-        return f"An exception of type {type(e).__name__}: {e}"
+        logging.error(f"An exception of type {type(e).__name__}: {e}")
+        return "An internal error has occurred!"
 
     domains = []
     for email_address in von:
