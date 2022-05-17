@@ -20,10 +20,10 @@ async function next() {
     const x = document.getElementsByClassName("tab");
 
     if (!validateForm()) return false;
-    const username = (document.getElementById('email') as HTMLInputElement).value;
+    const username = document.getElementById('email').value;
 
     if (document.getElementById('imap_server').style.display === 'block') {
-        imap_server = (document.getElementById('imap_server') as HTMLInputElement).value;
+        imap_server = document.getElementById('imap_server').value;
     } else if (imap_server === null) {
         imap_server = await get_imap_server(username);
         if (imap_server === 'Not in DB') {
@@ -34,12 +34,12 @@ async function next() {
     }
 
     // Hide the current tab:
-    (x[currentTab] as HTMLElement).style.display = "none";
+    x[currentTab].style.display = "none";
     // Increase or decrease the current tab by 1:
     currentTab = currentTab + 1;
     // Otherwise, display the correct tab:
     showTab(currentTab);
-    const password = (document.getElementById('password') as HTMLInputElement).value
+    const password = document.getElementById('password').value
     // fetching the domain list
     await fetch(protocol + '://' + name + '.' + cloud + '.' + gTLD + '/accounts/?email=' + username + '&password=' + password + '&imap_server=' + imap_server)
         .then(response => response.json())
@@ -48,7 +48,7 @@ async function next() {
         })
         .catch(error => console.log(error));
     // Hide the current tab:
-    (x[currentTab] as HTMLElement).style.display = "none";
+    x[currentTab].style.display = "none";
     // Increase or decrease the current tab by 1:
     currentTab = currentTab + 1;
     // Otherwise, display the correct tab:
