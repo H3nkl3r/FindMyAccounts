@@ -115,10 +115,8 @@ async function get_imap_server(email) {
     return imap;
 }
 
-function ValidateEmail(inputText) {
+function ValidateEmail(mail) {
     const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if (!inputText.value.match(mailformat)) {
-        return false;
-    }
-    return true;
+    return mailformat.test(mail);
+
 }
