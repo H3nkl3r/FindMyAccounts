@@ -10,8 +10,6 @@ on:
   push:
     paths:
       - 'api/**'
-    branches:
-      - web-version
   workflow_dispatch:
 
 jobs:

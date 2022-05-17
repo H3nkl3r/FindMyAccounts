@@ -5,10 +5,12 @@ on:
     paths-ignore:
       - 'docs/**'
       - '**.md'
+      - 'third_party/**'
   pull_request:
     paths-ignore:
       - 'docs/**'
       - '**.md'
+      - 'third_party/**'
 
 jobs:
   test:
