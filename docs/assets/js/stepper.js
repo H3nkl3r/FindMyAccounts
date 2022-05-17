@@ -20,6 +20,7 @@ async function next() {
     const x = document.getElementsByClassName("tab");
 
     if (!validateForm(0)) return false;
+    if (!ValidateEmail(document.getElementById("email").value)) return false;
     if (!validateForm(1)) return false;
     const username = document.getElementById('email').value;
 
@@ -101,4 +102,14 @@ async function get_imap_server(email){
             imap = 'Not in DB';
         });
     return imap;
+}
+
+function ValidateEmail(inputText)
+{
+    const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if(!inputText.value.match(mailformat)) {
+        inputText.className += " invalid";
+        return false;
+    }
+    return true;
 }
