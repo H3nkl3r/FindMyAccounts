@@ -19,14 +19,12 @@ async function next() {
     // This function will figure out which tab to display
     const x = document.getElementsByClassName("tab");
 
-    if (!validateForm(0)) return false;
-    if (!ValidateEmail(document.getElementById("email").value)) return false;
-    if (!validateForm(1)) return false;
+    if (!validateForm()) return false;
     const username = document.getElementById('email').value;
 
-    if(document.getElementById('imap_server').style.display === 'block'){
+    if (document.getElementById('imap_server').style.display === 'block') {
         imap_server = document.getElementById('imap_server').value;
-    } else if(imap_server === null){
+    } else if (imap_server === null) {
         imap_server = await get_imap_server(username);
         if (imap_server === 'Not in DB') {
             document.getElementById('imap_server').style.display = 'block';
@@ -57,12 +55,12 @@ async function next() {
 
     // create list of domains
     domainlist.forEach(item => {
-    let li = document.createElement('li');
-    li.style.listStyleImage = "url('https://www.google.com/s2/favicons?domain=" + item + "')";
-    document.getElementById('domainlist').appendChild(li);
+        let li = document.createElement('li');
+        li.style.listStyleImage = "url('https://www.google.com/s2/favicons?domain=" + item + "')";
+        document.getElementById('domainlist').appendChild(li);
 
-    li.innerHTML += item;
-});
+        li.innerHTML += item;
+    });
 }
 
 function copytoclipboard() {
@@ -71,23 +69,36 @@ function copytoclipboard() {
     return Promise.reject('The Clipboard API is not available.');
 }
 
-function validateForm(n) {
+function validateForm() {
     // This function deals with validation of the form fields
-    let x, y, valid = true;
+    let x, y, i, valid = true;
     x = document.getElementsByClassName("tab");
-    console.log(x)
     y = x[currentTab].getElementsByTagName("input");
-    // If a field is empty...
-    if (y[n].value === "") {
-        // add an "invalid" class to the field:
-        y[n].className += " invalid";
-        // and set the current valid status to false:
-        valid = false;
+    // A loop that checks every input field in the current tab:
+    for (i = 0; i < y.length; i++) {
+        // If a field is visible
+        if (y[i].style.display !== 'none') {
+            // If a field is empty...
+            if (y[i].value === "") {
+                // add an "invalid" class to the field:
+                y[i].className += " invalid";
+                // and set the current valid status to false:
+                valid = false;
+            } else if (y[i].id === "email") {
+                // If the email is not valid...
+                if (!ValidateEmail(y[i].value)) {
+                    // add an "invalid" class to the field:
+                    y[i].className += " invalid";
+                    // and set the current valid status to false:
+                    valid = false;
+                }
+            }
+        }
     }
     return valid; // return the valid status
 }
 
-async function get_imap_server(email){
+async function get_imap_server(email) {
     const name = email.substring(0, email.lastIndexOf("@"));
     const domain = email.substring(email.lastIndexOf("@") + 1);
     let imap;
@@ -104,11 +115,9 @@ async function get_imap_server(email){
     return imap;
 }
 
-function ValidateEmail(inputText)
-{
+function ValidateEmail(inputText) {
     const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if(!inputText.value.match(mailformat)) {
-        inputText.className += " invalid";
+    if (!inputText.value.match(mailformat)) {
         return false;
     }
     return true;
