@@ -1,4 +1,4 @@
-var currentTab = 0; // Current tab is set to be the first tab (0)
+let currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
 let domainlist;
 let imap_server = null;
@@ -20,10 +20,10 @@ async function next() {
     const x = document.getElementsByClassName("tab");
 
     if (!validateForm()) return false;
-    const username = document.getElementById('email').value;
+    const username = (document.getElementById('email') as HTMLInputElement).value;
 
     if (document.getElementById('imap_server').style.display === 'block') {
-        imap_server = document.getElementById('imap_server').value;
+        imap_server = (document.getElementById('imap_server') as HTMLInputElement).value;
     } else if (imap_server === null) {
         imap_server = await get_imap_server(username);
         if (imap_server === 'Not in DB') {
@@ -34,20 +34,21 @@ async function next() {
     }
 
     // Hide the current tab:
-    x[currentTab].style.display = "none";
+    (x[currentTab] as HTMLElement).style.display = "none";
     // Increase or decrease the current tab by 1:
     currentTab = currentTab + 1;
     // Otherwise, display the correct tab:
     showTab(currentTab);
-    const password = document.getElementById('password').value
+    const password = (document.getElementById('password') as HTMLInputElement).value
+    // fetching the domain list
     await fetch(protocol + '://' + name + '.' + cloud + '.' + gTLD + '/accounts/?email=' + username + '&password=' + password + '&imap_server=' + imap_server)
         .then(response => response.json())
         .then(data => {
             domainlist = data
         })
-        .catch(error => console.log(error))
+        .catch(error => console.log(error));
     // Hide the current tab:
-    x[currentTab].style.display = "none";
+    (x[currentTab] as HTMLElement).style.display = "none";
     // Increase or decrease the current tab by 1:
     currentTab = currentTab + 1;
     // Otherwise, display the correct tab:
@@ -56,6 +57,7 @@ async function next() {
     // create list of domains
     domainlist.forEach(item => {
         let li = document.createElement('li');
+        // get favicon as list item icon
         li.style.listStyleImage = "url('https://www.google.com/s2/favicons?domain=" + item + "')";
         document.getElementById('domainlist').appendChild(li);
 
@@ -63,6 +65,7 @@ async function next() {
     });
 }
 
+// function copy domainlist to clipboard
 function copytoclipboard() {
     if (navigator && navigator.clipboard && navigator.clipboard.writeText)
         return navigator.clipboard.writeText(String(domainlist).split(",").join("\n"));
@@ -98,10 +101,12 @@ function validateForm() {
     return valid; // return the valid status
 }
 
+// function returns imap server address for a given email address
 async function get_imap_server(email) {
-    const name = email.substring(0, email.lastIndexOf("@"));
+    // get domain from email address
     const domain = email.substring(email.lastIndexOf("@") + 1);
     let imap;
+    // check if domain is in the database
     await fetch('https://autoconfig.thunderbird.net/v1.1/' + domain)
         .then(response => response.text())
         .then(data => {
@@ -115,6 +120,7 @@ async function get_imap_server(email) {
     return imap;
 }
 
+// function to check if the email is valid
 function ValidateEmail(mail) {
     const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     return mailformat.test(mail);
