@@ -4,12 +4,8 @@ WhereDoIHaveAnAccount depends on third party libraries to implement some functio
 
 | Name       | URL                                      | License              |
 |------------|------------------------------------------|----------------------|
-| fastapi    | https://github.com/tiangolo/fastapi      | MIT license          |
 | pytest     | https://github.com/pytest-dev/pytest     | MIT license          |
-| uvicorn    | https://github.com/encode/uvicorn        | BSD-3-Clause license |
 | tox        | https://github.com/tox-dev/tox           | MIT license          |
 | imap-tools | https://github.com/ikvk/imap_tools       | Apache-2.0 license   |
 | setuptools | https://github.com/pypa/setuptools       | MIT license          |
 | requests   | https://github.com/psf/requests          | Apache-2.0 license   |
-| uvloop     | https://github.com/MagicStack/uvloop     | Apache-2.0 license   |
-| httptools  | https://github.com/MagicStack/httptools  | MIT license          |
