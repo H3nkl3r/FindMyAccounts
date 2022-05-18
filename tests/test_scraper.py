@@ -1,3 +1,4 @@
+# Copyright (c) 2022 Timo Kühne
 import os
 
 from WhereDoIHaveAnAccount.scraper import scrape
