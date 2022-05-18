@@ -55,8 +55,14 @@ def scrape(username, password, imap_server):
                 if 'sent' in folder.name.lower():
                     continue
                 mailbox.folder.set(folder.name)
-                for msg in mailbox.fetch(headers_only=True, bulk=True):
-                    von.append(msg.from_)
+                found_nums = mailbox.numbers('ALL')
+                page_len = 100
+                pages = int(len(found_nums) // page_len) + 1 if len(found_nums) % page_len else int(
+                    len(found_nums) // page_len)
+                for page in range(pages):
+                    page_limit = slice(page * page_len, page * page_len + page_len)
+                    for msg in mailbox.fetch(headers_only=True, bulk=True, limit=page_limit):
+                        von.append(msg.from_)
     except MailboxLoginError:
         return 'Authentication failed: If you have 2-Factor-Authentication activated for your Email, you need to use ' \
                'an App-Password '
