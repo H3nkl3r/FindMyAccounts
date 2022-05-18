@@ -68,6 +68,8 @@ def scrape(username, password, imap_server):
             domains.append(get_domain_from_email(email_address))
         except IndexError:
             continue
+        except ValueError:
+            continue
 
     # Remove duplicates
     domains = list(set(domains))
