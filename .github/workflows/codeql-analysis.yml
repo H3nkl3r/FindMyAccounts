@@ -15,7 +15,6 @@ on:
   push:
     branches: [ main ]
     paths-ignore:
-      - 'docs/**'
       - '**.md'
       - 'third_party/**'
   pull_request:
@@ -36,7 +35,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'python' ]
+        language: [ 'python', 'javascript' ]
         # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby' ]
         # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
 
