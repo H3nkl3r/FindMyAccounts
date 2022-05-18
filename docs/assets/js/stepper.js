@@ -87,7 +87,7 @@ function validateForm() {
                 y[i].className += " invalid";
                 // and set the current valid status to false:
                 valid = false;
-            } else if (y[i].id === "email") {
+            }/* else if (y[i].id === "email") {
                 // If the email is not valid...
                 if (!ValidateEmail(y[i].value)) {
                     // add an "invalid" class to the field:
@@ -95,7 +95,7 @@ function validateForm() {
                     // and set the current valid status to false:
                     valid = false;
                 }
-            }
+            }*/
         }
     }
     return valid; // return the valid status
@@ -119,10 +119,10 @@ async function get_imap_server(email) {
         });
     return imap;
 }
-
+/*
 // function to check if the email is valid
 function ValidateEmail(mail) {
     const mailformat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return mailformat.test(mail);
 
-}
+}*/
