@@ -12,32 +12,14 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-import getpass
-from xml.etree.ElementTree import fromstring
 import logging
 
-import requests
 from imap_tools import MailBox, MailBoxFolderManager
 from imap_tools.errors import MailboxLoginError
 
 
-def get_imap_server(user):
-    """
-    Given an email address, return imap server if found
-    :param user: email address
-    :return: imap server address if specified in json
-    """
-    domain = user[user.index('@') + 1:]
-    try:
-        r = requests.get('https://autoconfig.thunderbird.net/v1.1/' + domain)
-    except requests.exceptions.ConnectionError:
-        print('Connection Error')
-        return None
-
-    root = fromstring(r.content)
-    for child in root[0]:
-        if child.tag == 'incomingServer':
-            return child[0].text
+def get_domain_from_email(email):
+    return email[email.index('@') + 1:]
 
 
 def scrape(username, password, imap_server):
@@ -73,7 +55,7 @@ def scrape(username, password, imap_server):
     domains = []
     for email_address in von:
         try:
-            domains.append('.'.join(email_address.split('@')[1].split('.')[-2:]))
+            domains.append(get_domain_from_email(email_address))
         except IndexError:
             continue
 
@@ -81,22 +63,4 @@ def scrape(username, password, imap_server):
     return domains
 
 
-def main():
-    print('\n#######################\n')
 
-    username = input("Enter username: ")
-    password = getpass.getpass("Enter password: ")
-
-    imap_server = get_imap_server(username)
-
-    if imap_server is None:
-        imap_server = input("Enter IMAP Server: ")
-
-    print('\nStart analysing your emails...\n')
-
-    domains = scrape(username, password, imap_server)
-
-    print("\n\n List of all UNIQUE accounts:")
-    print("-------------------------------")
-    for domain in domains:
-        print(domain)
