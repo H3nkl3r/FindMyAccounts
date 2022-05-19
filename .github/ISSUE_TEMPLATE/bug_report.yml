@@ -24,7 +24,7 @@ body:
         3. Run '...'
         4. See error...
     validations:
-      required: false
+      required: True
   - type: textarea
     id: expected
     attributes:
