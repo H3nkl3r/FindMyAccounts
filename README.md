@@ -46,3 +46,4 @@ Pull requests are very welcomed.
 ### ToDo
 * More exception handling
 * Better testing
+* Method for more precise prediction
