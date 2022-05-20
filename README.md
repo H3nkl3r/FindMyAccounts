@@ -18,7 +18,7 @@ I hope it helps you find all your accounts.
 
 ## Usage
 
-Just go for our online tool and fill in your email and password.
+Just go for the online tool and fill in your email and password.
 
 [Online Tool](https://h3nkl3r.github.io/WhereDoIHaveAnAccount-online/)
 
