@@ -3,3 +3,4 @@ setuptools
 requests
 tox
 imap-tools
+pytest-cov

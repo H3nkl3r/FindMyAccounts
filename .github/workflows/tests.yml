@@ -36,3 +36,5 @@ jobs:
         TEST_EMAIL_USERNAME: ${{ secrets.TEST_EMAIL_USERNAME }}
         TEST_EMAIL_PASSWORD: ${{ secrets.TEST_EMAIL_PASSWORD }}
         TEST_EMAIL_IMAP_SERVER: ${{ secrets.TEST_EMAIL_IMAP_SERVER }}
+    - name: Upload coverage
+      uses: codecov/codecov-action@v2
