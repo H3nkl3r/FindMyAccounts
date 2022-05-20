@@ -8,7 +8,7 @@
 <a href="https://github.com/H3nkl3r/WhereDoIHaveAnAccount/actions/workflows/tests.yml" target="_blank">
     <img src="https://github.com/h3nkl3r/wheredoihaveanaccount/actions/workflows/tests.yml/badge.svg" alt="Test">
 </a>
-<a href="https://codecov.io/gh/tiangolo/fastapi" target="_blank">
+<a href="https://codecov.io/gh/h3nkl3r/wheredoihaveanaccount" target="_blank">
     <img src="https://img.shields.io/codecov/c/github/h3nkl3r/WhereDoIHaveAnAccount?color=%2334D058" alt="Coverage">
 </a>
 <a href="https://pypi.org/project/WhereDoIHaveAnAccount" target="_blank">
