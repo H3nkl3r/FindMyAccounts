@@ -40,7 +40,10 @@ def main():
 
     domains = scrape(username, password, imap_server)
 
-    print("\n\n List of all UNIQUE accounts:")
-    print("-------------------------------")
-    for domain in domains:
-        print(domain)
+    if isinstance(domains, str):
+        print(domains)
+    else:
+        print("\n\n List of all UNIQUE accounts:")
+        print("-------------------------------")
+        for domain in domains:
+            print(domain)

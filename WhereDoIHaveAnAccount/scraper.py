@@ -4,6 +4,8 @@ import logging
 from imap_tools import MailBox, MailBoxFolderManager
 from imap_tools.errors import MailboxLoginError
 
+from email_validator import validate_email, EmailNotValidError
+
 
 def get_domain_from_email(email):
     """
@@ -22,9 +24,20 @@ def scrape(username, password, imap_server):
     :param imap_server: imap server for specified email address
     :return: Set of domains
     """
+
+    # validate email address
+    email = None
+    try:
+        # Validate & take the normalized form of the email
+        email = validate_email(username).email
+    except EmailNotValidError as e:
+        # email is not valid, exception message is human-readable
+        logging.error(f"An exception of type {type(e).__name__}: {e}")
+        return "email is not valid"
+
     von = []
     try:
-        with MailBox(imap_server).login(username, password) as mailbox:
+        with MailBox(imap_server).login(email, password) as mailbox:
             # iterate over all folders
             for folder in MailBoxFolderManager(mailbox).list():
                 # not scraping the sent folder because it is not necessary

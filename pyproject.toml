@@ -10,7 +10,7 @@ authors = [
 ]
 version = "1.3.2"
 description = "Simple tool to find out where you have accounts."
-requires-python = ">=3.9"
+requires-python = ">=3.6.1"
 classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
@@ -18,11 +18,15 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.6",
 ]
 
 dependencies = [
     "imap-tools>=0.5",
-    "requests>=2.20",
+    "requests>=2.24",
+    "email_validator >=1.1.1",
 ]
 
 [project.urls]
@@ -49,7 +53,7 @@ testpaths = [
 legacy_tox_ini = """
 [tox]
 minversion = 3.8.0
-envlist = py39
+envlist = py39, py38, py37, py36
 isolated_build = true
 
 [testenv]
@@ -62,6 +66,7 @@ passenv =
 deps =
     imap-tools>=0.5
     requests>=2.20
+    email_validator >=1.1.1
     pytest >=6.2.4
     pytest-cov >=2.12.0
 commands =
