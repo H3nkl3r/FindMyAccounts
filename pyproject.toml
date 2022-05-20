@@ -1,6 +1,43 @@
 [build-system]
-requires = ["setuptools>=42.0", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "WhereDoIHaveAnAccount"
+readme = "README.md"
+authors = [
+    {name = "Timo Kühne"},
+]
+version = "1.3.2"
+description = "Simple tool to find out where you have accounts."
+requires-python = ">=3.9"
+classifiers = [
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+]
+
+dependencies = [
+    "imap-tools>=0.5",
+    "requests>=2.20",
+]
+
+[project.urls]
+Documentation = "https://github.com/H3nkl3r/WhereDoIHaveAnAccount/wiki"
+Source = "https://github.com/h3nkl3r/wheredoihaveanaccount"
+
+[project.optional-dependencies]
+test = [
+    "pytest >=6.2.4",
+    "pytest-cov >=2.12.0",
+    "tox >=3.14.0",
+]
+
+[project.scripts]
+WhereDoIHaveAnAccount = "WhereDoIHaveAnAccount.cli:main"
 
 [tool.pytest.ini_options]
 addopts = "--cov=WhereDoIHaveAnAccount --cov-report=xml"
@@ -23,7 +60,10 @@ passenv =
     TEST_EMAIL_PASSWORD
     TEST_EMAIL_IMAP_SERVER
 deps =
-    -rrequirements.txt
+    imap-tools>=0.5
+    requests>=2.20
+    pytest >=6.2.4
+    pytest-cov >=2.12.0
 commands =
     pytest --basetemp={envtmpdir}
 """
