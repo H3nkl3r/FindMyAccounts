@@ -5,8 +5,8 @@
     <em>A privacy first, open-source tool that analyses your emails to find out where you possible could have accounts.</em>
 </p>
 <p align="center">
-<a href="https://github.com/H3nkl3r/WhereDoIHaveAnAccount/actions/workflows/tests.yml" target="_blank">
-    <img src="https://github.com/h3nkl3r/wheredoihaveanaccount/actions/workflows/tests.yml/badge.svg" alt="Test">
+<a href="https://github.com/H3nkl3r/WhereDoIHaveAnAccount/actions/workflows/test.yml" target="_blank">
+    <img src="https://github.com/h3nkl3r/wheredoihaveanaccount/actions/workflows/test.yml/badge.svg" alt="Test">
 </a>
 <a href="https://codecov.io/gh/h3nkl3r/wheredoihaveanaccount" target="_blank">
     <img src="https://img.shields.io/codecov/c/github/h3nkl3r/WhereDoIHaveAnAccount?color=%2334D058" alt="Coverage">
