@@ -7,3 +7,23 @@ addopts = "--cov=WhereDoIHaveAnAccount --cov-report=xml"
 testpaths = [
     "tests",
 ]
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+minversion = 3.8.0
+envlist = py39
+isolated_build = true
+
+[testenv]
+setenv =
+    PYTHONPATH = {toxinidir}
+passenv =
+    TEST_EMAIL_USERNAME
+    TEST_EMAIL_PASSWORD
+    TEST_EMAIL_IMAP_SERVER
+deps =
+    -rrequirements.txt
+commands =
+    pytest --basetemp={envtmpdir}
+"""
