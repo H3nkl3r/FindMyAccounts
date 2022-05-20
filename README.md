@@ -1,12 +1,25 @@
-# WhereDoIHaveAnAccount
+<p align="center">
+  WhereDoIHaveAnAccount
+</p>
+<p align="center">
+    <em>A privacy first, open-source tool that analyses your emails to find out where you possible could have accounts.</em>
+</p>
+<p align="center">
+<a href="https://github.com/H3nkl3r/WhereDoIHaveAnAccount/actions/workflows/tests.yml" target="_blank">
+    <img src="https://github.com/h3nkl3r/wheredoihaveanaccount/actions/workflows/tests.yml/badge.svg" alt="Test">
+</a>
+<a href="https://codecov.io/gh/tiangolo/fastapi" target="_blank">
+    <img src="https://img.shields.io/codecov/c/github/h3nkl3r/WhereDoIHaveAnAccount?color=%2334D058" alt="Coverage">
+</a>
+<a href="https://pypi.org/project/WhereDoIHaveAnAccount" target="_blank">
+    <img src="https://img.shields.io/pypi/v/WhereDoIHaveAnAccount?color=%2334D058&label=pypi%20package" alt="Package version">
+</a>
+<a href="https://pypi.org/project/WhereDoIHaveAnAccount" target="_blank">
+    <img src="https://img.shields.io/pypi/pyversions/WhereDoIHaveAnAccount?color=%2334D058" alt="Supported Python versions">
+</a>
+</p>
 
-![GitHub](https://img.shields.io/github/license/h3nkl3r/WhereDoIHaveAnAccount)
-![GitHub](https://github.com/h3nkl3r/wheredoihaveanaccount/actions/workflows/tests.yml/badge.svg)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/H3nkl3r/WhereDoIHaveAnAccount)
-![GitHub last commit](https://img.shields.io/github/last-commit/h3nkl3r/WhereDoIHaveAnAccount)
-![GitHub issues](https://img.shields.io/github/issues/h3nkl3r/wheredoIhaveanaccount)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/WhereDoIHaveAnAccount)
-![PyPI - Downloads](https://img.shields.io/pypi/dm/WhereDoIHaveAnAccount?label=Python%20Package%20Downloads)
+#
 
 Did you ever wonder where you have all registered your email address? In the best case you have a Password manager where
 you keep all this info but in case you haven't here is your tool.
