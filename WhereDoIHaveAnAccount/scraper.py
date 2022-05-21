@@ -6,6 +6,8 @@ from imap_tools.errors import MailboxLoginError
 
 from email_validator import validate_email, EmailNotValidError
 
+import pandas as pd
+
 
 def get_domain_from_email(email):
     """
@@ -76,4 +78,17 @@ def scrape(username, password, imap_server):
     return domains
 
 
+def filtered_scrape(username, password, imap_server, filter_domains_list):
+    """
+    Scrape the mailbox of a user but only for domains that are in the filter_domains_list
+    :param filter_domains_list: path to a feature file which contains the domains to filter
+    :param username: email address
+    :param password: password for the specified email address
+    :param imap_server: imap server for specified email address
+    :return: Set of domains
+    """
+    domains = scrape(username, password, imap_server)
+    filter_list = pd.read_feather(filter_domains_list)
+    filter_domains = filter_list['domain'].tolist()
+    return [domain for domain in domains if domain in filter_domains]
 
