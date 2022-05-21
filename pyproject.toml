@@ -27,6 +27,8 @@ dependencies = [
     "imap-tools>=0.5",
     "requests>=2.24",
     "email_validator >=1.1.1",
+    "pandas >=1.0.3",
+    "feather-format >=0.5.0",
 ]
 
 [project.urls]
@@ -76,6 +78,8 @@ deps =
     email_validator >=1.1.1
     pytest >=6.2.4
     pytest-cov >=2.12.0
+    pandas >=1.0.3
+    feather-format >=0.5.0
 commands =
     pytest --basetemp={envtmpdir}
 """
