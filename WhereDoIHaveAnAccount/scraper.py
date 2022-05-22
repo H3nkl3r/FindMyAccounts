@@ -135,6 +135,7 @@ def preprocess_data(email_header_df):
     # lemmatize
     lemmatizer = nltk.stem.WordNetLemmatizer()
     nltk.download('wordnet')
+    nltk.download('omw-1.4')
     email_header_df['subject'] = email_header_df['subject'].apply(lambda x: [lemmatizer.lemmatize(word) for word in x])
 
     return email_header_df
