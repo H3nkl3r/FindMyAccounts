@@ -124,6 +124,7 @@ def preprocess_data(email_header_df):
     email_header_df['subject'] = email_header_df['subject'].apply(lambda x: re.sub("ß", "ss", x))
 
     # tokenize
+    nltk.download('punkt')
     email_header_df['subject'] = email_header_df['subject'].apply(lambda x: nltk.word_tokenize(x))
 
     # remove stopwords
