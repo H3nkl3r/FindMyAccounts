@@ -9,7 +9,6 @@ import pandas as pd
 import pickle
 import nltk
 import re
-from sklearn.feature_extraction.text import CountVectorizer
 
 
 def get_domain_from_email(email):
@@ -161,8 +160,9 @@ def sklearn_scrape(username, password, imap_server, model, vector_model):
     subject_features = vectorizer.transform([' '.join(o) for o in email_header_df['subject'].tolist()])
 
     email_header_df['prediction'] = model.predict(subject_features.toarray())
+    email_header_df['probability'] = model.predict_proba(subject_features.toarray())[:, 1]
 
-    return email_header_df[email_header_df['prediction'] == 1].to_json(orient='index')
+    return email_header_df.loc[email_header_df['prediction'] == 1, ['domain', 'probability']].drop_duplicates(ignore_index=True).to_json(orient='records')
 
 
 
