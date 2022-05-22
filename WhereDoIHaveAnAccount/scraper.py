@@ -162,7 +162,7 @@ def sklearn_scrape(username, password, imap_server, model, vector_model):
     email_header_df['prediction'] = model.predict(subject_features.toarray())
     email_header_df['probability'] = model.predict_proba(subject_features.toarray())[:, 1]
 
-    return email_header_df.loc[email_header_df['prediction'] == 1, ['domain', 'probability']].drop_duplicates(ignore_index=True).to_json(orient='records')
+    return email_header_df.loc[email_header_df['prediction'] == 1, ['domain', 'probability']].sort_values(by='probability', ascending=False).drop_duplicates(subset=['domain'], ignore_index=True).to_dict(orient='records')
 
 
 

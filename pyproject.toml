@@ -83,7 +83,7 @@ deps =
     pandas >=1.0.3
     feather-format >=0.3
     nltk >=3.4.5
-    sklearn >=1.0.0
+    sklearn
 commands =
     pytest --basetemp={envtmpdir}
 """
