@@ -1,5 +1,6 @@
 # Copyright (c) 2022 Timo Kühne
 import logging
+import math
 
 from imap_tools import MailBox, MailBoxFolderManager
 from imap_tools.errors import MailboxLoginError
@@ -88,7 +89,7 @@ def distinct_scrape(username, password, imap_server):
 
     email_header_df = get_email_headers(username, password, imap_server)
 
-    return email_header_df['domain'].to_list()
+    return email_header_df['domain'].to_frame().drop_duplicates(subset=['domain'], ignore_index=True).to_dict(orient='records')
 
 
 def filtered_scrape(username, password, imap_server, filter_domains_list):
@@ -103,7 +104,7 @@ def filtered_scrape(username, password, imap_server, filter_domains_list):
     email_header_df = get_email_headers(username, password, imap_server)
     filter_list = pd.read_feather(filter_domains_list)
     filter_domains = filter_list['domain'].tolist()
-    return email_header_df[email_header_df['domain'].isin(filter_domains)][:, 'domain'].to_list()
+    return email_header_df[email_header_df['domain'].isin(filter_domains)][:, 'domain'].drop_duplicates(subset=['domain'], ignore_index=True).to_dict(orient='records')
 
 
 def preprocess_data(email_header_df):
@@ -138,6 +139,10 @@ def preprocess_data(email_header_df):
     return email_header_df
 
 
+def truncate(f, n):
+    return math.floor(f * 10 ** n) / 10 ** n
+
+
 def sklearn_scrape(username, password, imap_server, model, vector_model):
     """
     Scrape the mailbox of a user but only for domains that are in the filter_domains_list
@@ -161,6 +166,9 @@ def sklearn_scrape(username, password, imap_server, model, vector_model):
 
     email_header_df['prediction'] = model.predict(subject_features.toarray())
     email_header_df['probability'] = model.predict_proba(subject_features.toarray())[:, 1]
+
+    # cut to 4 decimals
+    email_header_df['probability'] = email_header_df['probability'].apply(lambda x: truncate(x, 2))
 
     return email_header_df.loc[email_header_df['prediction'] == 1, ['domain', 'probability']].sort_values(by='probability', ascending=False).drop_duplicates(subset=['domain'], ignore_index=True).to_dict(orient='records')
 
