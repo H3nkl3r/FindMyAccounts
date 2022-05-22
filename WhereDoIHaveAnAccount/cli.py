@@ -4,7 +4,7 @@ from xml.etree.ElementTree import fromstring
 
 import requests
 
-from WhereDoIHaveAnAccount.scraper import get_domain_from_email, scrape
+from WhereDoIHaveAnAccount.scraper import get_domain_from_email, distinct_scrape
 
 
 def get_imap_server(user):
@@ -38,7 +38,7 @@ def main():
 
     print('\nStart analysing your emails...\n')
 
-    domains = scrape(username, password, imap_server)
+    domains = distinct_scrape(username, password, imap_server)
 
     if isinstance(domains, str):
         print(domains)
