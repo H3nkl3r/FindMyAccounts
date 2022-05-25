@@ -57,6 +57,6 @@ If you have 2FA activated for your email account, you need to use an app passwor
 ## Contribution
 Pull requests are very welcomed.
 ### ToDo
+* Implement Gmail API (see Issue for more info)
 * More exception handling
 * Better testing
-* Method for more precise prediction
