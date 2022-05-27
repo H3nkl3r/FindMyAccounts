@@ -1,21 +1,21 @@
 <p align="center">
-  WhereDoIHaveAnAccount
+  FindMyAccounts
 </p>
 <p align="center">
     <em>A privacy first, open-source tool that analyses your emails to find out where you possible could have accounts.</em>
 </p>
 <p align="center">
-<a href="https://github.com/H3nkl3r/WhereDoIHaveAnAccount/actions/workflows/test.yml" target="_blank">
-    <img src="https://github.com/h3nkl3r/wheredoihaveanaccount/actions/workflows/test.yml/badge.svg" alt="Test">
+<a href="https://github.com/H3nkl3r/FindMyAccounts/actions/workflows/test.yml" target="_blank">
+    <img src="https://github.com/h3nkl3r/FindMyAccounts/actions/workflows/test.yml/badge.svg" alt="Test">
 </a>
-<a href="https://codecov.io/gh/h3nkl3r/wheredoihaveanaccount" target="_blank">
-    <img src="https://img.shields.io/codecov/c/github/h3nkl3r/WhereDoIHaveAnAccount?color=%2334D058" alt="Coverage">
+<a href="https://codecov.io/gh/h3nkl3r/FindMyAccounts" target="_blank">
+    <img src="https://img.shields.io/codecov/c/github/h3nkl3r/FindMyAccounts?color=%2334D058" alt="Coverage">
 </a>
-<a href="https://pypi.org/project/WhereDoIHaveAnAccount" target="_blank">
-    <img src="https://img.shields.io/pypi/v/WhereDoIHaveAnAccount?color=%2334D058&label=pypi%20package" alt="Package version">
+<a href="https://pypi.org/project/FindMyAccounts" target="_blank">
+    <img src="https://img.shields.io/pypi/v/FindMyAccounts?color=%2334D058&label=pypi%20package" alt="Package version">
 </a>
-<a href="https://pypi.org/project/WhereDoIHaveAnAccount" target="_blank">
-    <img src="https://img.shields.io/pypi/pyversions/WhereDoIHaveAnAccount?color=%2334D058" alt="Supported Python versions">
+<a href="https://pypi.org/project/FindMyAccounts" target="_blank">
+    <img src="https://img.shields.io/pypi/pyversions/FindMyAccounts?color=%2334D058" alt="Supported Python versions">
 </a>
 </p>
 
