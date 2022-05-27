@@ -3,7 +3,7 @@ requires = ["flit_core >=3.2,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "WhereDoIHaveAnAccount"
+name = "FindMyAccounts"
 readme = "README.md"
 authors = [
     {name = "Timo Kühne"},
@@ -34,8 +34,8 @@ dependencies = [
 ]
 
 [project.urls]
-Documentation = "https://github.com/H3nkl3r/WhereDoIHaveAnAccount/wiki"
-Source = "https://github.com/h3nkl3r/wheredoihaveanaccount"
+Documentation = "https://github.com/H3nkl3r/FindMyAccounts/wiki"
+Source = "https://github.com/h3nkl3r/FindMyAccounts"
 
 [project.optional-dependencies]
 test = [
@@ -45,10 +45,10 @@ test = [
 ]
 
 [project.scripts]
-WhereDoIHaveAnAccount = "WhereDoIHaveAnAccount.cli:main"
+FindMyAccounts = "FindMyAccounts.cli:main"
 
 [tool.pytest.ini_options]
-addopts = "--cov=WhereDoIHaveAnAccount --cov-report=xml"
+addopts = "--cov=FindMyAccounts --cov-report=xml"
 testpaths = [
     "tests",
 ]

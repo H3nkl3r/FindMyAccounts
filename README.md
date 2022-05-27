@@ -36,15 +36,15 @@ Just go for the online tool and fill in your email and password.
 https://h3nkl3r.github.io/WhereDoIHaveAnAccount-online/
 
 ### For Experts
-`$ pip install WhereDoIHaveAnAccount`
+`$ pip install FindMyAccounts`
 
 To get started right away:
 
-`$ WhereDoIHaveAnAccount`
+`$ FindMyAccounts`
 
-You can run WhereDoIHaveAnAccount as a package if running it as a script doesn't work:
+You can run FindMyAccounts as a package if running it as a script doesn't work:
 
-`$ python -m WhereDoIHaveAnAccount`
+`$ python -m FindMyAccounts`
 
 After that Enter your email address
 

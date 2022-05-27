@@ -1,11 +1,11 @@
 name: Help me
-description: Get help with WhereDoIHaveAnAccount
+description: Get help with FindMyAccounts
 title: "Help me:"
 labels: help wanted
 body:
   - type: markdown
     attributes:
-      value: Thanks for using WhereDoIHaveAnAccount!
+      value: Thanks for using FindMyAccounts!
   - type: textarea
     id: description
     attributes:

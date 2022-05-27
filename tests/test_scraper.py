@@ -1,7 +1,7 @@
 # Copyright (c) 2022 Timo Kühne
 import os
 
-from WhereDoIHaveAnAccount.scraper import distinct_scrape
+from FindMyAccounts.scraper import distinct_scrape
 
 TEST_EMAIl_USERNAME = os.environ['TEST_EMAIL_USERNAME']
 TEST_EMAIL_PASSWORD = os.environ['TEST_EMAIL_PASSWORD']

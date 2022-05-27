@@ -11,7 +11,7 @@ Only the **latest stable release** is supported with security updates.
 I highly encourage you to follow the principles of a responsible disclosure:
 
 * Do not publish your research before contacting me first.
-* [Write me an e-mail](mailto:wheredoihaveanaccount@timokuehne.com)
+* [Write me an e-mail](mailto:security@FindMyAccounts.com)
 * Do not open a public issue until my confirmation.
 * If the vulnerability is accepted please give me at least 4 weeks to release proper security updates.
 * After the security updates are released feel free to publish your research.

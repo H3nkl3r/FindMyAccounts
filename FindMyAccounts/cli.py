@@ -4,7 +4,7 @@ from xml.etree.ElementTree import fromstring
 
 import requests
 
-from WhereDoIHaveAnAccount.scraper import get_domain_from_email, distinct_scrape
+from FindMyAccounts.scraper import get_domain_from_email, distinct_scrape
 
 
 def get_imap_server(user):
