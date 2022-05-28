@@ -1,0 +1,57 @@
+## !USE TEXT THEME
+theme: jekyll-text-theme # Gem-based Jekyll Themes
+# remote_theme: kitian616/jekyll-TeXt-theme # Jekyll Remote Theme, see https://github.com/benbalter/jekyll-remote-theme for more information.
+#
+# ,--------.      ,--.   ,--. ,--.
+# '--.  .--',---.  \  `.'  /,-'  '-.
+#    |  |  | .-. :  .'    \ '-.  .-'
+#    |  |  \   --. /  .'.  \  |  |
+#    `--'   `----''--'   '--' `--'
+## => Site Settings
+##############################
+text_skin: default # "default" (default), "dark", "forest", "ocean", "chocolate", "orange"
+highlight_theme: default # "default" (default), "tomorrow", "tomorrow-night", "tomorrow-night-eighties", "tomorrow-night-blue", "tomorrow-night-bright"
+url     : https://h3nkl3r.github.io/FindMyAccounts # the base hostname & protocol for your site e.g. https://www.someone.com
+baseurl : / # does not include hostname
+title   : FindMyAccounts
+description: > # this means to ignore newlines until "Language & timezone"
+  A privacy first, open-source tool that analyses your emails to find out where you possible could have accounts. 
+
+
+## => GitHub Repository (if the site is hosted by GitHub)
+##############################
+repository: H3nkl3r/FindMyAccounts
+repository_tree: main
+
+## => Build
+##############################
+markdown    : kramdown
+highlighter : rouge
+permalink   : date
+
+exclude:
+  - CHANGELOG.md
+  - HOW_TO_RELEASE.md
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README-*.md
+  - README.md
+  - gulpfile.js
+  - jekyll-text-theme.gemspec
+  - package-lock.json
+  - package.json
+  - /docs
+  - /node_modules
+  - /screenshots
+  - /test
+  - /vendor
+
+
+## => Plugins
+##############################
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jemoji

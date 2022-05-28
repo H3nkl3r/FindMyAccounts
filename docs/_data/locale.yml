@@ -1,0 +1,24 @@
+# @start locale config
+## => English
+########################
+en: &EN
+  SUBSCRIBE               : "Subscribe"
+  READMORE                : "Read more"
+  CANCEL                  : "Cancel"
+  PREVIOUS                : "PREVIOUS"
+  NEXT                    : "NEXT"
+  POST_ON_GITHUB          : "Edit on Github"
+  EMAIL_ME                : "Send me an Email."
+  EMAIL_US                : "Send us an Email."
+  COPYRIGHT_DATES         : "2022"
+
+en-GB:
+  <<: *EN
+en-US:
+  <<: *EN
+en-CA:
+  <<: *EN
+en-AU:
+  <<: *EN
+
+# @end locale config
