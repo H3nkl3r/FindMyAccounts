@@ -33,7 +33,7 @@ I hope it helps you find all your accounts.
 
 Just go for the online tool and fill in your email and password.
 
-https://h3nkl3r.github.io/WhereDoIHaveAnAccount-online/
+https://app.findmyaccounts.com
 
 ### For Experts
 `$ pip install FindMyAccounts`

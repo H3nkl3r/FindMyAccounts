@@ -11,7 +11,7 @@ article_header:
 
 ## Usage
 Use the Open source edition or get immediate free access to the online edition. <br />
-[Download](https://github.com/H3nkl3r/FindMyAccounts){:.button.button--primary.button--pill} or [Online Tool](https://h3nkl3r.github.io/WhereDoIHaveAnAccount-online/){:.button.button--primary.button--pill}
+[Download](https://github.com/H3nkl3r/FindMyAccounts){:.button.button--primary.button--pill} or [Online Tool](https://app.findmyaccounts.com){:.button.button--primary.button--pill}
 
 ## But why?
 So why is it important to keep an eye on your online accounts? <br />
