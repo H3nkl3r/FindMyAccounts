@@ -39,4 +39,4 @@ default:
 
 sources:
   bootcdn:
-    jquery: 'https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js'
+    jquery: 'assets/js/jquery.min.js'
