@@ -1,6 +1,7 @@
 <p align="center">
-  FindMyAccounts
+  <a href="https://findmyaccounts.com"><img src="https://user-images.githubusercontent.com/22354443/171009590-ea823176-dd29-4cf0-ac56-a065623ed0f4.png" alt="FindMyAccount"></a>
 </p>
+
 <p align="center">
     <em>A privacy first, open-source tool that analyses your emails to find out where you possible could have accounts.</em>
 </p>
