@@ -1,12 +1,13 @@
 ---
 layout: article
 title: Find My Accounts
-description: Find My Accounts is a tool to find your accounts on different services.
-article_header:
-  type: overlay
+mode: immersive
+header:
   theme: dark
-  background_color: '#000229'
-  background_image: false
+article_header:
+  type: cover
+  image:
+    src: /assets/img/FindMyAccounts.png
 ---
 
 ## Usage
