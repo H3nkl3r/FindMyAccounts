@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Find My Accounts
+title: Home
 mode: immersive
 header:
   theme: dark
