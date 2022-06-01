@@ -31,7 +31,7 @@ dependencies = [
     "pandas >=1.0.3",
     "feather-format >=0.3",
     "nltk >=3.4.5",
-    "sklearn",
+    "scikit-learn",
 ]
 
 [project.urls]
@@ -85,7 +85,7 @@ deps =
     pandas >=1.0.3
     feather-format >=0.3
     nltk >=3.4.5
-    sklearn
+    scikit-learn
 commands =
     pytest --basetemp={envtmpdir}
 """

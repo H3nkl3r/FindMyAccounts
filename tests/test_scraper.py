@@ -1,5 +1,7 @@
 # Copyright (c) 2022 Timo Kühne
 import os
+import sys
+import pytest
 
 from FindMyAccounts.scraper import distinct_scrape, get_email_headers, sklearn_scrape, filtered_scrape
 
@@ -25,6 +27,7 @@ def test_get_email_header_login_error():
                        'you need to use an App-Password '
 
 
+@pytest.mark.skipif(sys.version_info != (3, 10), reason='the generated pickle files are very sensitive to different versions')
 def test_sklearn_scrape():
     domains = sklearn_scrape(TEST_EMAIl_USERNAME, TEST_EMAIL_PASSWORD, TEST_EMAIL_IMAP_SERVER, 'tests/dump_model.pkl', 'tests/dump_vectorizer.pkl')
     assert isinstance(domains, list)
