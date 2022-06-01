@@ -61,7 +61,7 @@ def get_email_headers(username, password, imap_server):
                 for page in range(pages):
                     page_limit = slice(page * page_len, page * page_len + page_len)
                     for msg in mailbox.fetch(headers_only=True, bulk=True, limit=page_limit):
-                        email_header_df = email_header_df.append([{'from': msg.from_, 'subject': msg.subject}])
+                        email_header_df = pd.concat([email_header_df, pd.DataFrame({'from': [msg.from_], 'subject': [msg.subject]})])
     except MailboxLoginError:
         return 'Authentication failed: If you have 2-Factor-Authentication activated for your Email, you need to use ' \
                'an App-Password '
