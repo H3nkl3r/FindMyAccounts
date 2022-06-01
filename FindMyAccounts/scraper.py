@@ -108,8 +108,6 @@ def filtered_scrape(username, password, imap_server, filter_domains_list):
         return email_header_df
     filter_list = pd.read_feather(filter_domains_list)
     filter_domains = filter_list['domain'].tolist()
-    print(filter_domains)
-    print(email_header_df[email_header_df['domain'].isin(filter_domains)])
     return email_header_df.loc[email_header_df['domain'].isin(filter_domains), ['domain']].drop_duplicates(subset=['domain'], ignore_index=True).to_dict(orient='records')
 
 
