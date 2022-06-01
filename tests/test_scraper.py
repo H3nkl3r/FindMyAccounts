@@ -1,7 +1,7 @@
 # Copyright (c) 2022 Timo Kühne
 import os
 
-from FindMyAccounts.scraper import distinct_scrape, get_email_headers
+from FindMyAccounts.scraper import distinct_scrape, get_email_headers, sklearn_scrape, filtered_scrape
 
 TEST_EMAIl_USERNAME = os.environ['TEST_EMAIL_USERNAME']
 TEST_EMAIL_PASSWORD = os.environ['TEST_EMAIL_PASSWORD']
@@ -23,3 +23,30 @@ def test_get_email_header_login_error():
     response = get_email_headers(TEST_EMAIl_USERNAME, 'wrong_password', TEST_EMAIL_IMAP_SERVER)
     assert response == 'Authentication failed: If you have 2-Factor-Authentication activated for your Email, ' \
                        'you need to use an App-Password '
+
+
+def test_sklearn_scrape():
+    domains = sklearn_scrape(TEST_EMAIl_USERNAME, TEST_EMAIL_PASSWORD, TEST_EMAIL_IMAP_SERVER, 'tests/dump_model.pkl', 'tests/dump_vectorizer.pkl')
+    assert isinstance(domains, list)
+    assert len(domains) is not 0
+
+
+def test_filtered_scrape():
+    domains = filtered_scrape(TEST_EMAIl_USERNAME, TEST_EMAIL_PASSWORD, TEST_EMAIL_IMAP_SERVER, 'tests/dump_filter_list.feather')
+    assert isinstance(domains, list)
+    assert len(domains) is not 0
+
+
+def test_filtered_scrape_error():
+    domains = filtered_scrape('TEST_EMAIl_USERNAME', 'TEST_EMAIL_PASSWORD', 'TEST_EMAIL_IMAP_SERVER', 'tests/dump_filter_list_error.feather')
+    assert isinstance(domains, str)
+
+
+def test_sklearn_scrape_error():
+    domains = sklearn_scrape('TEST_EMAIl_USERNAME', 'TEST_EMAIL_PASSWORD', 'TEST_EMAIL_IMAP_SERVER', 'tests/dump_model_error.pkl', 'tests/dump_vectorizer_error.pkl')
+    assert isinstance(domains, str)
+
+
+def test_distinct_scrape_error():
+    domains = distinct_scrape('TEST_EMAIl_USERNAME', 'TEST_EMAIL_PASSWORD', 'TEST_EMAIL_IMAP_SERVER')
+    assert isinstance(domains, str)

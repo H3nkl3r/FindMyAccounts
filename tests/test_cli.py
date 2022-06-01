@@ -22,3 +22,12 @@ def test_commandline_script(monkeypatch):
     assert isinstance(domains, list)
     assert len(domains) is not 0
 
+
+def test_commandline_script_error(monkeypatch):
+    response = iter(['not_valid_email@email', 'TEST_EMAIL_IMAP_SERVER'])
+    monkeypatch.setattr('builtins.input', lambda x: next(response))
+    monkeypatch.setattr('getpass.getpass', lambda x: 'TEST_EMAIL_PASSWORD')
+
+    domains = cli.main()
+    assert isinstance(domains, str)
+

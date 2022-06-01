@@ -88,6 +88,8 @@ def distinct_scrape(username, password, imap_server):
     """
 
     email_header_df = get_email_headers(username, password, imap_server)
+    if isinstance(email_header_df, str):
+        return email_header_df
 
     return email_header_df['domain'].to_frame().drop_duplicates(subset=['domain'], ignore_index=True).to_dict(orient='records')
 
@@ -102,9 +104,13 @@ def filtered_scrape(username, password, imap_server, filter_domains_list):
     :return: Set of domains
     """
     email_header_df = get_email_headers(username, password, imap_server)
+    if isinstance(email_header_df, str):
+        return email_header_df
     filter_list = pd.read_feather(filter_domains_list)
     filter_domains = filter_list['domain'].tolist()
-    return email_header_df[email_header_df['domain'].isin(filter_domains)][:, 'domain'].drop_duplicates(subset=['domain'], ignore_index=True).to_dict(orient='records')
+    print(filter_domains)
+    print(email_header_df[email_header_df['domain'].isin(filter_domains)])
+    return email_header_df.loc[email_header_df['domain'].isin(filter_domains), ['domain']].drop_duplicates(subset=['domain'], ignore_index=True).to_dict(orient='records')
 
 
 def preprocess_data(email_header_df):
@@ -156,6 +162,8 @@ def sklearn_scrape(username, password, imap_server, model, vector_model):
     :return: Set of domains
     """
     email_header_df = get_email_headers(username, password, imap_server)
+    if isinstance(email_header_df, str):
+        return email_header_df
 
     # load models
     model = pickle.load(open(model, 'rb'))
