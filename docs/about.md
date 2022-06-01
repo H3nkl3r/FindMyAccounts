@@ -10,12 +10,12 @@ Did you ever wonder where you have all registered your email address? In the bes
 
 ### Need help?
 
-Please open a ticket [here](https://github.com/H3nkl3r/FindMyAccounts/issues/new?assignees=&labels=&template=help-me.md&title=)
+Please open a ticket [here](https://github.com/H3nkl3r/FindMyAccounts/issues/new?assignees=&labels=&template=help-me.yml&title=)
 
 ### Problems?
 
-If you discovered a bug please report [here](https://github.com/H3nkl3r/FindMyAccounts/issues/new?assignees=&labels=&template=bug_report.md&title=)
+If you discovered a bug please report [here](https://github.com/H3nkl3r/FindMyAccounts/issues/new?assignees=&labels=&template=bug_report.yml&title=)
 
 ### Feature request?
 
-Please let me know [here](https://github.com/H3nkl3r/FindMyAccounts/issues/new?assignees=&labels=&template=feature_request.md&title=)
+Please let me know [here](https://github.com/H3nkl3r/FindMyAccounts/issues/new?assignees=&labels=&template=feature_request.yml&title=)
