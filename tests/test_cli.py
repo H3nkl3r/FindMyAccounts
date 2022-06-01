@@ -1,3 +1,4 @@
+# Copyright (c) 2022 Timo Kühne
 import os
 
 import FindMyAccounts.cli as cli
