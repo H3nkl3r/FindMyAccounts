@@ -47,3 +47,5 @@ def main():
         print("-------------------------------")
         for domain in domains:
             print(domain)
+
+    return domains
