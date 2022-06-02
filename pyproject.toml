@@ -32,6 +32,7 @@ dependencies = [
     "feather-format >=0.3",
     "nltk >=3.4.5",
     "scikit-learn",
+    "validators",
 ]
 
 [project.urls]
@@ -86,6 +87,7 @@ deps =
     feather-format >=0.3
     nltk >=3.4.5
     scikit-learn
+    validators
 commands =
     pytest --basetemp={envtmpdir}
 """
