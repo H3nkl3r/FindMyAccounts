@@ -41,7 +41,7 @@ def main():
             break
         except EmailNotValidError as e:
             # email is not valid, exception message is human-readable
-            logging.error(f"An exception of type {type(e).__name__}: {e}")
+            logging.warning(e)
             print('Try again')
 
     password = getpass.getpass("Enter password: ")
