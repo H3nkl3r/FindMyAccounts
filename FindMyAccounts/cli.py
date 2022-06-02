@@ -1,20 +1,22 @@
 # Copyright (c) 2022 Timo Kühne
 import getpass
-from xml.etree.ElementTree import fromstring
+import logging
 
+from xml.etree.ElementTree import fromstring
+from email_validator import validate_email, EmailNotValidError
 import requests
 
 from FindMyAccounts.scraper import get_domain_from_email, distinct_scrape
 
 
-def get_imap_server(user):
+def get_imap_server(email):
     """
     Given an email address, return imap server if found
-    :param user: email address
+    :param email: email address
     :return: imap server address if specified in json
     """
     try:
-        r = requests.get('https://autoconfig.thunderbird.net/v1.1/' + get_domain_from_email(user))
+        r = requests.get('https://autoconfig.thunderbird.net/v1.1/' + get_domain_from_email(email))
         r.raise_for_status()
     except requests.exceptions.HTTPError:
         return None
@@ -28,7 +30,19 @@ def get_imap_server(user):
 def main():
     print('\n#######################\n')
 
-    username = input("Enter username: ")
+    while True:
+        username = input("Enter username: ")
+
+        email = None
+        try:
+            # Validate & take the normalized form of the email
+            email = validate_email(username).email
+            break
+        except EmailNotValidError as e:
+            # email is not valid, exception message is human-readable
+            logging.error(f"An exception of type {type(e).__name__}: {e}")
+            print('Try again')
+
     password = getpass.getpass("Enter password: ")
 
     imap_server = get_imap_server(username)

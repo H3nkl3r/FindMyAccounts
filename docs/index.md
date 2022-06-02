@@ -14,6 +14,8 @@ article_header:
 Use the Open source edition or get immediate free access to the online edition. <br />
 [Download](https://github.com/H3nkl3r/FindMyAccounts){:.button.button--primary.button--pill} or [Online Tool](https://app.findmyaccounts.com){:.button.button--primary.button--pill}
 
+*currently not working for gmail*
+
 ## But why?
 So why is it important to keep an eye on your online accounts? <br />
 
