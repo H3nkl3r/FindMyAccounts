@@ -11,6 +11,4 @@ FindMyAccounts depends on third party libraries to implement some functionality.
 | email-validator | https://github.com/JoshData/python-email-validator | CC0-1.0 license        |
 | pytest-cov      | https://github.com/pytest-dev/pytest-cov           | MIT license            |
 | pandas          | https://github.com/pandas-dev/pandas               | BSD-3-Clause license   |
-| feather-format  | https://github.com/wesm/feather                    | Apache-2.0 license     |
-| nltk            | https://github.com/nltk/nltk                       | Apache-2.0 license     |
-| scikit-learn    | https://github.com/scikit-learn/scikit-learn       | BSD-3-Clause license   |
+| validators      | https://github.com/kvesteri/validators             | MIT license            |

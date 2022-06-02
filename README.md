@@ -59,5 +59,7 @@ If you have 2FA activated for your email account, you need to use an app passwor
 Pull requests are very welcomed.
 ### ToDo
 * Implement Gmail API (see Issue for more info)
-* More exception handling
-* Better testing
+* speed up the process
+* Improve exception handling
+* Improve testing
+* work on user facing and developer facing documentation
