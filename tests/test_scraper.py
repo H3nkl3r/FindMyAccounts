@@ -67,6 +67,11 @@ def test_domain_from_email_value_error():
 
 
 def test_get_email_header_error():
-    response = get_email_headers(TEST_EMAIl_USERNAME, 'TEST_EMAIL_PASSWORD', 'TEST_EMAIL_IMAP_SERVER')
+    response = get_email_headers(TEST_EMAIl_USERNAME, 'TEST_EMAIL_PASSWORD', TEST_EMAIL_IMAP_SERVER)
     assert response == 'An internal error has occurred!'
+
+
+def test_get_email_header_imap_server_error():
+    response = get_email_headers(TEST_EMAIl_USERNAME, TEST_EMAIL_PASSWORD, 'TEST_EMAIL_IMAP_SERVER')
+    assert response == 'imap server hostname is not valid'
 

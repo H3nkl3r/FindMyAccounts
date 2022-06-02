@@ -1,6 +1,7 @@
 # Copyright (c) 2022 Timo Kühne
 import logging
 import math
+import validators
 
 from imap_tools import MailBox, MailBoxFolderManager
 from imap_tools.errors import MailboxLoginError
@@ -42,6 +43,10 @@ def get_email_headers(username, password, imap_server):
         # email is not valid, exception message is human-readable
         logging.error(f"An exception of type {type(e).__name__}: {e}")
         return "email is not valid"
+
+    # fqdn validation of imap_server hostname
+    if not validators.domain(imap_server):
+        return "imap server hostname is not valid"
 
     email_header_df = pd.DataFrame(columns=['from', 'subject'])
     try:

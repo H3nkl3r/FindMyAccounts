@@ -1,6 +1,7 @@
 # Copyright (c) 2022 Timo Kühne
 import getpass
 import logging
+import validators
 
 from xml.etree.ElementTree import fromstring
 from email_validator import validate_email, EmailNotValidError
@@ -48,15 +49,18 @@ def main():
     imap_server = get_imap_server(username)
 
     if imap_server is None:
-        imap_server = input("Enter IMAP Server: ")
+        while True:
+            imap_server = input("Enter IMAP Server: ")
+            if validators.domain(imap_server):
+                break
+            else:
+                print('Imap server hostname not valid. Try again')
 
     print('\nStart analysing your emails...\n')
 
     domains = distinct_scrape(username, password, imap_server)
 
-    if isinstance(domains, str):
-        print(domains)
-    else:
+    if not isinstance(domains, str):
         print("\n\n List of all UNIQUE accounts:")
         print("-------------------------------")
         for domain in domains:
