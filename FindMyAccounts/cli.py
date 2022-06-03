@@ -7,7 +7,8 @@ from xml.etree.ElementTree import fromstring
 from email_validator import validate_email, EmailNotValidError
 import requests
 
-from FindMyAccounts.scraper import get_domain_from_email, distinct_scrape
+from FindMyAccounts.scraper import get_domain_from_email, distinct_scrape, validate_domain, DomainNotValidError
+from imap_tools import MailboxLoginError
 
 
 def get_imap_server(email):
@@ -51,14 +52,20 @@ def main():
     if imap_server is None:
         while True:
             imap_server = input("Enter IMAP Server: ")
-            if validators.domain(imap_server):
+            try:
+                imap_server = validate_domain(imap_server)
                 break
-            else:
-                print('Imap server hostname not valid. Try again')
+            except DomainNotValidError as e:
+                logging.warning(e)
+                print('Try again')
 
     print('\nStart analysing your emails...\n')
 
-    domains = distinct_scrape(username, password, imap_server)
+    try:
+        domains = distinct_scrape(username, password, imap_server)
+    except MailboxLoginError:
+        print('\nYour username or password is incorrect.\n')
+        return
 
     if not isinstance(domains, str):
         print("\n\n List of all UNIQUE accounts:")
