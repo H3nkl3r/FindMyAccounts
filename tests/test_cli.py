@@ -13,25 +13,34 @@ def test_get_imap_server():
     assert imap_server == 'imap.gmail.com'
 
 
+def test_get_imap_server_not_found():
+    imap_server = cli.get_imap_server('test@testmail.com')
+    assert imap_server is None
+
+
 def test_commandline_script(monkeypatch):
     response = iter([TEST_EMAIl_USERNAME, TEST_EMAIL_IMAP_SERVER])
     monkeypatch.setattr('builtins.input', lambda x: next(response))
     monkeypatch.setattr('getpass.getpass', lambda x: TEST_EMAIL_PASSWORD)
+    cli.main()
 
 
 def test_commandline_script_email_error(monkeypatch):
     response = iter(['non_valid_email', TEST_EMAIl_USERNAME, TEST_EMAIL_IMAP_SERVER])
     monkeypatch.setattr('builtins.input', lambda x: next(response))
     monkeypatch.setattr('getpass.getpass', lambda x: TEST_EMAIL_PASSWORD)
+    cli.main()
 
 
 def test_commandline_script_imap_server_error(monkeypatch):
     response = iter([TEST_EMAIl_USERNAME, 'not-valid-imap_server', TEST_EMAIL_IMAP_SERVER])
     monkeypatch.setattr('builtins.input', lambda x: next(response))
     monkeypatch.setattr('getpass.getpass', lambda x: TEST_EMAIL_PASSWORD)
+    cli.main()
 
 
 def test_commandline_script_password_error(monkeypatch):
     response = iter([TEST_EMAIl_USERNAME, TEST_EMAIL_IMAP_SERVER])
     monkeypatch.setattr('builtins.input', lambda x: next(response))
     monkeypatch.setattr('getpass.getpass', lambda x: 'not_valid_password')
+    cli.main()
