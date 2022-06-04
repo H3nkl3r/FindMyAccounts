@@ -1,7 +1,8 @@
 # Copyright (c) 2022 Timo Kühne
 import getpass
 import logging
-import validators
+
+import pandas as pd
 
 from xml.etree.ElementTree import fromstring
 from email_validator import validate_email, EmailNotValidError
@@ -62,7 +63,7 @@ def main():
     print('\nStart analysing your emails...\n')
 
     try:
-        domains = distinct_scrape(username, password, imap_server)
+        domains = pd.DataFrame.from_dict(distinct_scrape(username, password, imap_server))
     except MailboxLoginError:
         print('\nYour username or password is incorrect.\n')
         return
@@ -70,7 +71,4 @@ def main():
     if not isinstance(domains, str):
         print("\n\n List of all UNIQUE accounts:")
         print("-------------------------------")
-        for domain in domains:
-            print(domain)
-
-    return domains
+        print(domains.to_string())

@@ -18,19 +18,11 @@ def test_commandline_script(monkeypatch):
     monkeypatch.setattr('builtins.input', lambda x: next(response))
     monkeypatch.setattr('getpass.getpass', lambda x: TEST_EMAIL_PASSWORD)
 
-    domains = cli.main()
-    assert isinstance(domains, list)
-    assert len(domains) is not 0
-
 
 def test_commandline_script_email_error(monkeypatch):
     response = iter(['non_valid_email', TEST_EMAIl_USERNAME, TEST_EMAIL_IMAP_SERVER])
     monkeypatch.setattr('builtins.input', lambda x: next(response))
     monkeypatch.setattr('getpass.getpass', lambda x: TEST_EMAIL_PASSWORD)
-
-    domains = cli.main()
-    assert isinstance(domains, list)
-    assert len(domains) is not 0
 
 
 def test_commandline_script_imap_server_error(monkeypatch):
@@ -38,15 +30,8 @@ def test_commandline_script_imap_server_error(monkeypatch):
     monkeypatch.setattr('builtins.input', lambda x: next(response))
     monkeypatch.setattr('getpass.getpass', lambda x: TEST_EMAIL_PASSWORD)
 
-    domains = cli.main()
-    assert isinstance(domains, list)
-    assert len(domains) is not 0
-
 
 def test_commandline_script_password_error(monkeypatch):
     response = iter([TEST_EMAIl_USERNAME, TEST_EMAIL_IMAP_SERVER])
     monkeypatch.setattr('builtins.input', lambda x: next(response))
     monkeypatch.setattr('getpass.getpass', lambda x: 'not_valid_password')
-
-    domains = cli.main()
-    assert domains is None

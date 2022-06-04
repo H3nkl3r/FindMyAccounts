@@ -69,7 +69,13 @@ def get_email_headers(username, password, imap_server):
                 for msg in mailbox.fetch(headers_only=True, bulk=True, limit=page_limit):
                     email_header_df = pd.concat([email_header_df, pd.DataFrame({'from': [msg.from_], 'subject': [msg.subject]})])
 
+    # remove rows where from is ''
+    email_header_df = email_header_df[email_header_df['from'] != '']
+
     email_header_df['domain'] = email_header_df['from'].apply(lambda x: get_domain_from_email(x))
+
+    # remove rows where from is None
+    email_header_df = email_header_df[email_header_df['from'] != 'None']
 
     # set type of columns to string
     email_header_df['from'] = email_header_df['from'].astype(str)
