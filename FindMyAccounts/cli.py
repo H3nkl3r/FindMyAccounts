@@ -65,7 +65,7 @@ def main():
     try:
         domains = pd.DataFrame.from_dict(distinct_scrape(username, password, imap_server))
     except MailboxLoginError:
-        print('\nYour username or password is incorrect.\n')
+        print('\nYour username or password is incorrect. Occasionally IMAP needs to be activated.\n')
         return
 
     if not isinstance(domains, str):
